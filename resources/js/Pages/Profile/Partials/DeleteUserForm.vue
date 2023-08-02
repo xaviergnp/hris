@@ -2,7 +2,7 @@
 import DangerButton from '@/Components/DangerButton.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Modal from '@/Components/Modal.vue';
+// import Modal from '@/Components/Modal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
@@ -48,48 +48,48 @@ const closeModal = () => {
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
 
-        <Modal :show="confirmingUserDeletion" @close="closeModal">
-            <div class="p-6">
-                <h2 class="text-lg font-medium text-gray-900">
-                    Are you sure you want to delete your account?
-                </h2>
+        <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="p-6">
+                            <h3 class="font-medium text-gray-900">
+                                Are you sure you want to delete your account?
+                            </h3>
 
-                <p class="mt-1 text-sm text-gray-600">
-                    Once your account is deleted, all of its resources and data will be permanently deleted. Please
-                    enter your password to confirm you would like to permanently delete your account.
-                </p>
+                            <p class="mt-1 text-sm text-gray-600">
+                                Once your account is deleted, all of its resources and data will be permanently deleted.
+                                Please
+                                enter your password to confirm you would like to permanently delete your account.
+                            </p>
 
-                <div class="mt-6">
-                    <InputLabel for="password" value="Password" class="sr-only" />
+                            <div class="mt-6">
+                                <InputLabel for="password" value="Password" class="sr-only" />
 
-                    <TextInput
-                        id="password"
-                        ref="passwordInput"
-                        v-model="form.password"
-                        type="password"
-                        class="mt-1 block w-3/4"
-                        placeholder="Password"
-                        @keyup.enter="deleteUser"
-                    />
+                                <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
+                                    class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" />
 
-                    <InputError :message="form.errors.password" class="mt-2" />
-                </div>
+                                <InputError :message="form.errors.password" class="mt-2" />
+                            </div>
 
-                <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
-
-                    <DangerButton
-                        class="ml-3"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                        @click="deleteUser"
-                    >
-                        Delete Account
-                    </DangerButton>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing" @click="deleteUser">Delete Account</button>
+                    </div>
                 </div>
             </div>
-        </Modal>
+        </div>
+
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+            Delete Account
+        </button>
     </section>
 </template>
