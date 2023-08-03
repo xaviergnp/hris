@@ -1,12 +1,12 @@
 <template>
-    <Head title="Job Vacancies" />
+    <Head title="Edit Job Vacancy" />
 
     <AuthenticatedLayout>
         <div class="container py-4">
             <BreadCrumbs :crumbs="crumbs" class="mb-3" />
-            <h3>Add Job Vacancy</h3>
+            <h3>Update Job Vacancy</h3>
             <hr>
-            <form @submit.prevent="create">
+            <form @submit.prevent="update">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="mb-3">
@@ -85,7 +85,7 @@
                         <div v-if="form.processing" class="spinner-border spinner-border-sm" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        Add record
+                        Update record
                     </button>
                 </div>
             </form>
@@ -100,37 +100,26 @@ import InputError from '@/Components/InputError.vue';
 import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import { computed } from 'vue';
 
-const form = useForm({
-    place_of_assignment: null,
-    position: null,
-    salary_grade: null,
-    monthly_salary: null,
-    eligibility: null,
-    education: null,
-    training: null,
-    work_experience: null,
-    competency: null,
-    posting_date: null,
-    closing_date: null,
-    plantilla_item_no: null
+const props = defineProps({
+    job_posting: Object
 });
 
-const create = () => form.post(route('recruitment.job_posting.store'), {
-    onSuccess: () => {
-        form.place_of_assignment = null;
-        form.position = null;
-        form.salary_grade = null;
-        form.monthly_salary = null;
-        form.eligibility = null;
-        form.education = null;
-        form.training = null;
-        form.work_experience = null;
-        form.competency = null;
-        form.posting_date = null;
-        form.closing_date = null;
-        form.plantilla_item_no = null;
-    }
+const form = useForm({
+    place_of_assignment: props.job_posting.place_of_assignment,
+    position: props.job_posting.position,
+    salary_grade: props.job_posting.salary_grade,
+    monthly_salary: props.job_posting.monthly_salary,
+    eligibility: props.job_posting.eligibility,
+    education: props.job_posting.education,
+    training: props.job_posting.training,
+    work_experience: props.job_posting.work_experience,
+    competency: props.job_posting.competency,
+    posting_date: props.job_posting.posting_date,
+    closing_date: props.job_posting.closing_date,
+    plantilla_item_no: props.job_posting.plantilla_item_no
 });
+
+const update = () => form.put(route('recruitment.job_posting.update', { job_posting: props.job_posting.id }));
 
 const crumbs = computed(() => ([
     {
@@ -145,7 +134,11 @@ const crumbs = computed(() => ([
         link: route('recruitment.job_posting.index')
     },
     {
-        label: 'Add',
+        label: props.job_posting.plantilla_item_no,
+        link: route('recruitment.job_posting.show', { job_posting: props.job_posting.id })
+    },
+    {
+        label: 'Edit',
     },
 ]))
 

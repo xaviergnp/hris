@@ -8,26 +8,20 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" :class="{ active: route().current('dashboard') }"
-                            :href="route('dashboard')">Dashboard</a>
+                        <Link class="nav-link" :class="{ active: route().current('dashboard') }" :href="route('dashboard')">
+                        Dashboard</Link>
                     </li>
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Recruitment</a>
+                        <Link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            :class="{ active: route().current('recruitment.*') }">Recruitment
+                        </Link>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" :href="route('recruitment.job_posting.index')">Job Vacancies</a></li>
+                            <li>
+                                <Link class="dropdown-item" :href="route('recruitment.job_posting.index')">Job Vacancies
+                                </Link>
+                            </li>
                         </ul>
                     </div>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link</a></li>
-                            <li><a class="dropdown-item" href="#">Another link</a></li>
-                            <li><a class="dropdown-item" href="#">A third link</a></li>
-                        </ul>
-                    </li> -->
                 </ul>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
@@ -42,7 +36,8 @@
                 </div>
             </div>
         </div>
-</nav></template>
+    </nav>
+</template>
 
 <script setup>
 import { Link } from '@inertiajs/vue3';

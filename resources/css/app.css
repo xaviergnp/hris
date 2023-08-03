@@ -1,5 +1,15 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@import "vue-wysiwyg/dist/vueWysiwyg.css";
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
+
+.center-element{
+    height: 80vh;    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,10 +1,3 @@
-<script setup>
-import MainNavbar from '@/Components/MainNavbar.vue';
-import { ref } from 'vue';
-
-const showingNavigationDropdown = ref(false);
-</script>
-
 <template>
     <div>
         <div class="container-fluid">
@@ -17,8 +10,20 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Content -->
             <main>
+                <div class="container mt-3">
+                    <div class="alert alert-success" v-if="$page.props.ziggy.flash.success">
+                        {{ $page.props.ziggy.flash.success }}
+                    </div>
+                </div>
                 <slot />
             </main>
         </div>
     </div>
 </template>
+
+<script setup>
+import MainNavbar from '@/Components/MainNavbar.vue';
+import { ref } from 'vue';
+
+const showingNavigationDropdown = ref(false);
+</script>

@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobPosting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class JobPostingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return inertia('Recruitment/JobPosting/Index');
+        $filters = $request->only(['search']);
+
+        // dd($filters);
+
+        return inertia('Recruitment/JobPosting/Index', [
+            'job_vacancies' => JobPosting::latest()->filter($filters)->paginate(15)->withQueryString(),
+            'filters' => $filters
+        ]);
     }
 
     /**
@@ -29,9 +39,10 @@ class JobPostingController extends Controller
     {
         $validateData = $request->validate([
             "place_of_assignment" => "required|string|max:255",
+            "plantilla_item_no" => "required|string|max:255|unique:job_postings,plantilla_item_no",
             "position" => "required|string|max:255",
-            "salary_grade" => "required|string|max:255",
-            "monthly_salary" => "required|integer|max:255",
+            "salary_grade" => "required|integer",
+            "monthly_salary" => "required|integer",
             "eligibility" => "required|string|max:255",
             "education" => "required|string|max:255",
             "training" => "required|string|max:255",
@@ -49,32 +60,60 @@ class JobPostingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(JobPosting $job_posting)
     {
-        //
+        return inertia('Recruitment/JobPosting/Show', [
+            'job_posting' => $job_posting
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(JobPosting $job_posting)
     {
-        //
+        return inertia('Recruitment/JobPosting/Edit', [
+            'job_posting' => $job_posting
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, JobPosting $job_posting)
     {
-        //
+        $messages = [
+            'plantilla_item_no.unique' => 'The Plantilla Item already exists in the database.'
+        ];
+
+        $validated = Validator::make($request->all(), [
+            "place_of_assignment" => "required|string|max:255",
+            "plantilla_item_no" => ["required", "string", Rule::unique('job_postings')->ignore($job_posting->id)],
+            "position" => "required|string|max:255",
+            "salary_grade" => "required|integer",
+            "monthly_salary" => "required|integer",
+            "eligibility" => "required|string|max:255",
+            "education" => "required|string|max:255",
+            "training" => "required|string|max:255",
+            "work_experience" => "required|string|max:255",
+            "competency" => "required|string|max:255",
+            "posting_date" => "required|date",
+            "closing_date" => "required|date"
+        ], $messages)->validate();
+        
+        $job_posting->update($validated);
+
+        return back()->with('success', 'Record updated successfully!');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobPosting $job_posting)
     {
-        //
+        $job_posting->delete();
+
+        return redirect(route('recruitment.job_posting.index'))->with('success', 'Record successfully deleted!');
     }
 }
