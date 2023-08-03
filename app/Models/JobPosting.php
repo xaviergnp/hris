@@ -18,9 +18,12 @@ class JobPosting extends Model
     }
 
     public function scopeFilter(Builder $query, array $filters) : Builder {
-        return $query->when(
-            $filters['search'] ?? false,
-            fn ($query, $value) => $query->where('position', '=', $value)
-        );
+        return $query
+            ->when(
+                $filters['search'] ?? false,
+                fn ($query, $value) => $query->where('position', 'like', '%' . $value . '%')
+                ->orWhere('place_of_assignment', 'like', '%' . $value . '%')
+                ->orWhere('plantilla_item_no', 'like', '%' . $value . '%')
+            );
     }
 }

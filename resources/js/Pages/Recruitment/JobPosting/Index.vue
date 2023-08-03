@@ -1,5 +1,5 @@
 <template>
-    <Head title="Job Opportunities" />
+    <Head title="Job Vacancies" />
 
     <AuthenticatedLayout>
         <div class="container py-2">
@@ -14,7 +14,7 @@
                     <Link :href="route('recruitment.job_posting.create')" class="btn btn-primary">Add Item</Link>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive mt-4">
                 <table class="table table-striped">
                     <thead>
                         <tr>
