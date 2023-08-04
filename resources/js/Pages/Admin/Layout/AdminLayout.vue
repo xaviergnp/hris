@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container-fluid">
-            <MainNavbar />
+            <AdminMainNavbar />
             <!-- Page Heading -->
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-import MainNavbar from '@/Components/MainNavbar.vue';
 import { ref } from 'vue';
+import AdminMainNavbar from '../Components/AdminMainNavbar.vue';
 
 const showingNavigationDropdown = ref(false);
 </script>

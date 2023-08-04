@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolePermissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,7 +43,14 @@ Route::middleware('auth')->group(function () {
     ->group(function () {
         Route::resource('job_posting', JobPostingController::class);
     });
-    
+
+    Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::name('dashboard')->get('dashboard', [AdminController::class, 'index']);
+        Route::resource('role_permission', RolePermissionController::class);
+    });
 });
 
 require __DIR__.'/auth.php';

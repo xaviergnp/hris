@@ -12,14 +12,19 @@ class JobPostingController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->authorizeResource(JobPosting::class, ['view']);
+    }
+    
     public function index(Request $request)
     {
-        $filters = $request->only(['search']);
+        $filters = $request->only(['search', 'order_by', 'order']);
 
         // dd($filters);
 
         return inertia('Recruitment/JobPosting/Index', [
-            'job_vacancies' => JobPosting::latest()->filter($filters)->paginate(15)->withQueryString(),
+            'job_vacancies' => JobPosting::filter($filters)->paginate(15)->withQueryString(),
             'filters' => $filters
         ]);
     }
@@ -112,7 +117,7 @@ class JobPostingController extends Controller
      */
     public function destroy(JobPosting $job_posting)
     {
-        $job_posting->delete();
+        $job_posting->deleteOrFail();
 
         return redirect(route('recruitment.job_posting.index'))->with('success', 'Record successfully deleted!');
     }

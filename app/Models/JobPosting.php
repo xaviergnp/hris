@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JobPosting extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['by_user_id', 'place_of_assignment', 'position', 'plantilla_item_no', 'salary_grade', 'monthly_salary', 'eligibility', 'education', 'training', 'work_experience', 'competency', 'posting_date', 'closing_date'];
 
@@ -24,6 +26,15 @@ class JobPosting extends Model
                 fn ($query, $value) => $query->where('position', 'like', '%' . $value . '%')
                 ->orWhere('place_of_assignment', 'like', '%' . $value . '%')
                 ->orWhere('plantilla_item_no', 'like', '%' . $value . '%')
-            );
+            )
+            ->unless(
+                $filters['order_by'] ?? false,
+                fn ($query) => $query->orderBy('posting_date', 'desc')
+            )
+            ->when(
+                $filters['order_by'] ?? false,
+                fn ($query, $value) => $query->orderBy($value, $filters['order'])
+            )
+            ;
     }
 }
