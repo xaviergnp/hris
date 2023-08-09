@@ -14,7 +14,7 @@ class JobPostingController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(JobPosting::class, ['view']);
+        $this->authorizeResource(JobPosting::class, 'job_posting');
     }
     
     public function index(Request $request)

@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Role;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -46,10 +49,16 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth'])
     ->group(function () {
         Route::name('dashboard')->get('dashboard', [AdminController::class, 'index']);
-        Route::resource('role_permission', RolePermissionController::class);
+
+        Route::prefix('role_permission')
+        ->name('role_permission.')
+        ->group(function () {
+            Route::name('index')->get('/', [RolePermissionController::class, 'index']);
+            Route::resource('role', RoleController::class);
+            Route::resource('permission', PermissionController::class);
+        });
     });
 });
 

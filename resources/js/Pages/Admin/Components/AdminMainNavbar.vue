@@ -7,8 +7,13 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav me-auto">
+                    <div class="nav-item">
+                        <Link class="nav-link" :href="route('admin.role_permission.role.index')"
+                            :class="{ active: route().current('admin.role_permission.*') }">Job Vacancies
+                        </Link>
+                    </div>
                     <div class="nav-item dropdown">
-                        <Link class="nav-link" :href="route('admin.role_permission.index')"
+                        <Link class="nav-link" :href="route('admin.role_permission.role.index')"
                             :class="{ active: route().current('admin.role_permission.*') }">Roles and
                         Permissions
                         </Link>
