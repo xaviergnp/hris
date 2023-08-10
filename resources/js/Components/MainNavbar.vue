@@ -11,9 +11,14 @@
                         <Link class="nav-link" :class="{ active: route().current('dashboard') }" :href="route('dashboard')">
                         Dashboard</Link>
                     </li>
-                    <div class="nav-item dropdown">
+                    <li class="nav-item">
+                        <Link class="nav-link" :class="{ active: route().current('recruitment.job_posting.index') }"
+                            :href="route('recruitment.job_posting.index')">Job Vacancies
+                        </Link>
+                    </li>
+                    <!-- <div class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            :class="{ active: route().current('recruitment.*') }">Recruitment
+                            :class="{ active: route().current('recruitment.*') }">Job Vacancies
                         </Link>
                         <ul class="dropdown-menu">
                             <li>
@@ -21,7 +26,7 @@
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </ul>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{

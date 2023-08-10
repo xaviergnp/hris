@@ -8,8 +8,9 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav me-auto">
                     <div class="nav-item">
-                        <Link class="nav-link" :href="route('admin.role_permission.role.index')"
-                            :class="{ active: route().current('admin.role_permission.*') }">Job Vacancies
+                        <Link class="nav-link" :href="route('admin.recruitment.job_posting.index')"
+                            :class="{ active: route().current('admin.recruitment.job_posting.*') }">Recruitment, Selection
+                        and Placement
                         </Link>
                     </div>
                     <div class="nav-item dropdown">

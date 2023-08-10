@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminJobPostingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\PermissionController;
@@ -40,24 +41,39 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Routes for Recruiment Page
     Route::prefix('recruitment')
     ->name('recruitment.')
     ->middleware(['auth'])
     ->group(function () {
-        Route::resource('job_posting', JobPostingController::class);
+        Route::resource('job_posting', JobPostingController::class)->only(['index', 'show']);
     });
 
+
+    
+    // Admin Page
     Route::prefix('admin')
+    ->middleware(['admin'])
     ->name('admin.')
     ->group(function () {
+
+        // Admin Dashboard
         Route::name('dashboard')->get('dashboard', [AdminController::class, 'index']);
 
+        // routes for Roles and Permissions
         Route::prefix('role_permission')
         ->name('role_permission.')
         ->group(function () {
             Route::name('index')->get('/', [RolePermissionController::class, 'index']);
             Route::resource('role', RoleController::class);
             Route::resource('permission', PermissionController::class);
+        });
+
+        // Routes for Recruiment Page
+        Route::prefix('recruitment')
+        ->name('recruitment.')
+        ->group(function () {
+            Route::resource('job_posting', AdminJobPostingController::class);
         });
     });
 });

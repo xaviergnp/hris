@@ -31,7 +31,7 @@ class JobPostingPolicy
     public function create(User $user): bool
     {
         //
-        return true;
+        return $user->hasPermissionTo('Manage Job Vacancies');
     }
 
     /**
@@ -40,7 +40,7 @@ class JobPostingPolicy
     public function update(User $user, JobPosting $jobPosting): bool
     {
         //
-        return true;
+        return $user->hasPermissionTo('Manage Job Vacancies');
     }
 
     /**
@@ -49,7 +49,7 @@ class JobPostingPolicy
     public function delete(User $user, JobPosting $jobPosting): bool
     {
         //
-        return true;
+        return $user->hasPermissionTo('Manage Job Vacancies');
     }
 
     /**
@@ -58,7 +58,7 @@ class JobPostingPolicy
     public function restore(User $user, JobPosting $jobPosting): bool
     {
         //
-        return true;
+        return $user->hasPermissionTo('Manage Job Vacancies');
     }
 
     /**
@@ -67,6 +67,6 @@ class JobPostingPolicy
     public function forceDelete(User $user, JobPosting $jobPosting): bool
     {
         //
-        return true;
+        return $user->hasPermissionTo('Manage Job Vacancies');
     }
 }

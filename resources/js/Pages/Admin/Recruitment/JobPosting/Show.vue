@@ -1,15 +1,20 @@
 <template>
     <Head title="Job Vacancies" />
 
-    <AuthenticatedLayout>
+    <AdminLayout>
         <BreadCrumbs :crumbs="crumbs" />
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3>{{ props.job_posting.position }}</h3>
                     <div class="d-flex gap-2">
-                        <Link class="btn btn-primary">
-                        Apply Now
+                        <Link :href="route('admin.recruitment.job_posting.edit', { job_posting: props.job_posting.id })"
+                            class="btn btn-primary">
+                        Edit
+                        </Link>
+                        <Link :href="route('admin.recruitment.job_posting.destroy', { job_posting: props.job_posting.id })"
+                            class="btn btn-danger" method="delete" as="button">
+                        Delete
                         </Link>
                     </div>
                 </div>
@@ -52,30 +57,30 @@
                 </dl>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 
 <script setup>
 import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import Salary from '@/Components/Salary.vue';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue';
 const props = defineProps({
     job_posting: Object
 });
 
 const crumbs = computed(() => ([
     {
-        label: 'Dashboard',
-        link: route('dashboard')
+        label: 'Admin Dashboard',
+        link: route('admin.dashboard')
     },
     {
         label: 'Recruitment'
     },
     {
         label: 'Job Vacancies',
-        link: route('recruitment.job_posting.index')
+        link: route('admin.recruitment.job_posting.index')
     },
     {
         label: props.job_posting.plantilla_item_no,

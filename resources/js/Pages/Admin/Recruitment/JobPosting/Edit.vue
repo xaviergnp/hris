@@ -1,7 +1,7 @@
 <template>
     <Head title="Edit Job Vacancy" />
 
-    <AuthenticatedLayout>
+    <AdminLayout>
         <BreadCrumbs :crumbs="crumbs" />
         <h3>Update Job Vacancy</h3>
         <hr>
@@ -9,17 +9,17 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
-                        <label for="place_of_assignment" class="form-label">Place of assignment</label>
-                        <input type="text" class="form-control" v-model="form.place_of_assignment"
-                            id="place_of_assignment" />
-                        <InputError :message="form.errors.place_of_assignment" />
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" class="form-control" v-model="form.position" id="position">
+                        <InputError :message="form.errors.position" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
-                        <label for="position" class="form-label">Position</label>
-                        <input type="text" class="form-control" v-model="form.position" id="position">
-                        <InputError :message="form.errors.position" />
+                        <label for="place_of_assignment" class="form-label">Place of assignment</label>
+                        <input type="text" class="form-control" v-model="form.place_of_assignment"
+                            id="place_of_assignment" />
+                        <InputError :message="form.errors.place_of_assignment" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -88,7 +88,7 @@
                 </button>
             </div>
         </form>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 
 <script setup>
@@ -97,6 +97,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import { computed } from 'vue';
+import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue';
 
 const props = defineProps({
     job_posting: Object
@@ -117,23 +118,23 @@ const form = useForm({
     plantilla_item_no: props.job_posting.plantilla_item_no
 });
 
-const update = () => form.put(route('recruitment.job_posting.update', { job_posting: props.job_posting.id }));
+const update = () => form.put(route('admin.recruitment.job_posting.update', { job_posting: props.job_posting.id }));
 
 const crumbs = computed(() => ([
     {
-        label: 'Dashboard',
-        link: route('dashboard')
+        label: 'Admin Dashboard',
+        link: route('admin.dashboard')
     },
     {
         label: 'Recruitment'
     },
     {
         label: 'Job Vacancies',
-        link: route('recruitment.job_posting.index')
+        link: route('admin.recruitment.job_posting.index')
     },
     {
         label: props.job_posting.plantilla_item_no,
-        link: route('recruitment.job_posting.show', { job_posting: props.job_posting.id })
+        link: route('admin.recruitment.job_posting.show', { job_posting: props.job_posting.id })
     },
     {
         label: 'Edit',
