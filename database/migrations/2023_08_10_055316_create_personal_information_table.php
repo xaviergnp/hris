@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('agency_employee_number', 255)->nullable();
             $table->string('citizenship', 255);
             $table->string('country', 255)->nullable();
-            $table->integer('duplicate_address')->default(0);
+            $table->boolean('duplicate_address')->default(false);
             $table->string('r_address_house_block_lot_number', 255)->nullable();
             $table->string('r_address_street', 255)->nullable();
             $table->string('r_address_subdivision_village', 255)->nullable();

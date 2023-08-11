@@ -8,7 +8,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h3>{{ props.job_posting.position }}</h3>
                     <div class="d-flex gap-2">
-                        <Link class="btn btn-primary">
+                        <Link :href="route('job_application.show', { job_posting: props.job_posting.id })"
+                            class="btn btn-primary">
                         Apply Now
                         </Link>
                     </div>
@@ -69,9 +70,6 @@ const crumbs = computed(() => ([
     {
         label: 'Dashboard',
         link: route('dashboard')
-    },
-    {
-        label: 'Recruitment'
     },
     {
         label: 'Job Vacancies',

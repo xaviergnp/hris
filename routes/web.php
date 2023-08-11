@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminJobPostingController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -32,24 +33,30 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
+
+// Routes for Recruiment Page
+Route::prefix('recruitment')
+->name('recruitment.')
+->group(function () {
+    Route::resource('job_posting', JobPostingController::class)->only(['index', 'show']);
+});
+
+// Job Application
+Route::prefix('job_application')
+->middleware(['auth'])
+->name('job_application.')
+->group(function () {
+    Route::name('show')->get('/job_posting/{job_posting}/show', [JobApplicationController::class, 'show']);
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Routes for Recruiment Page
-    Route::prefix('recruitment')
-    ->name('recruitment.')
-    ->middleware(['auth'])
-    ->group(function () {
-        Route::resource('job_posting', JobPostingController::class)->only(['index', 'show']);
-    });
-
-
     
     // Admin Page
     Route::prefix('admin')

@@ -54,9 +54,6 @@ const crumbs = computed(() => ([
         link: route('dashboard')
     },
     {
-        label: 'Recruitment'
-    },
-    {
         label: 'Job Vacancies',
     }
 ]))
