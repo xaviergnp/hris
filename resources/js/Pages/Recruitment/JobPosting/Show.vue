@@ -8,13 +8,19 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h3>{{ props.job_posting.position }}</h3>
                     <div class="d-flex gap-2">
-                        <Link :href="route('job_application.show', { job_posting: props.job_posting.id })"
-                            class="btn btn-primary">
-                        Apply Now
+                        <Link
+                            :href="
+                                route('job_application.show', {
+                                    job_posting: props.job_posting.id
+                                })
+                            "
+                            class="btn btn-primary"
+                        >
+                            Apply Now
                         </Link>
                     </div>
                 </div>
-                <hr>
+                <hr />
             </div>
             <div class="col-12 col-md-6">
                 <dl>
@@ -45,7 +51,9 @@
             <div class="col-12">
                 <dl>
                     <dt>Competency</dt>
-                    <dd style="white-space: pre-wrap;">{{ props.job_posting.competency }}</dd>
+                    <dd style="white-space: pre-wrap">
+                        {{ props.job_posting.competency }}
+                    </dd>
                     <dt>Posting Date</dt>
                     <dd>{{ props.job_posting.posting_date }}</dd>
                     <dt>Closing Date</dt>
@@ -57,16 +65,16 @@
 </template>
 
 <script setup>
-import BreadCrumbs from '@/Components/BreadCrumbs.vue';
-import Salary from '@/Components/Salary.vue';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import Salary from '@/Components/Salary.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import { Head, Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
 const props = defineProps({
     job_posting: Object
-});
+})
 
-const crumbs = computed(() => ([
+const crumbs = computed(() => [
     {
         label: 'Dashboard',
         link: route('dashboard')
@@ -76,8 +84,7 @@ const crumbs = computed(() => ([
         link: route('recruitment.job_posting.index')
     },
     {
-        label: props.job_posting.plantilla_item_no,
-    },
-]))
-
+        label: props.job_posting.plantilla_item_no
+    }
+])
 </script>

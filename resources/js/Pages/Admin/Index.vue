@@ -6,6 +6,6 @@
 </template>
 
 <script setup>
-import { Head } from '@inertiajs/vue3';
-import AdminLayout from './Layout/AdminLayout.vue';
+import { Head } from '@inertiajs/vue3'
+import AdminLayout from './Layout/AdminLayout.vue'
 </script>

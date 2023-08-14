@@ -7,7 +7,11 @@
         <div class="d-flex justify-content-between align-items-center">
             <Filter :filters="props.filters" />
             <div>
-                <Link :href="route('admin.recruitment.job_posting.create')" class="btn btn-primary">Add Item</Link>
+                <Link
+                    :href="route('admin.recruitment.job_posting.create')"
+                    class="btn btn-primary"
+                    >Add Item</Link
+                >
             </div>
         </div>
         <div class="table-responsive mt-4">
@@ -30,28 +34,44 @@
                         <td>{{ moment(item.posting_date).format('LL') }}</td>
                         <td>{{ moment(item.closing_date).format('LL') }}</td>
                         <td>
-                            <Link :href="route('admin.recruitment.job_posting.show', { job_posting: item.id })"
-                                class="btn btn-dark">Show</Link>
+                            <Link
+                                :href="
+                                    route(
+                                        'admin.recruitment.job_posting.show',
+                                        { job_posting: item.id }
+                                    )
+                                "
+                                class="btn btn-dark"
+                                >Show</Link
+                            >
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="text-center text-secondary" v-if="!props.job_vacancies.data.length">No records</div>
+            <div
+                class="text-center text-secondary"
+                v-if="!props.job_vacancies.data.length"
+            >
+                No records
+            </div>
         </div>
-        <Pagination v-if="props.job_vacancies.data.length" :links="props.job_vacancies.links" />
+        <Pagination
+            v-if="props.job_vacancies.data.length"
+            :links="props.job_vacancies.links"
+        />
     </AdminLayout>
 </template>
 
 <script setup>
-import BreadCrumbs from '@/Components/BreadCrumbs.vue';
-import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue'
+import { Head, Link, useForm } from '@inertiajs/vue3'
+import { computed } from 'vue'
 import moment from 'moment'
-import Pagination from '@/Components/Pagination.vue';
+import Pagination from '@/Components/Pagination.vue'
 import Filter from '@/Pages/Admin//Recruitment/JobPosting/Components/Filter.vue'
 
-const crumbs = computed(() => ([
+const crumbs = computed(() => [
     {
         label: 'Admin Dashboard',
         link: route('admin.dashboard')
@@ -60,14 +80,12 @@ const crumbs = computed(() => ([
         label: 'Recruitment'
     },
     {
-        label: 'Job Vacancies',
+        label: 'Job Vacancies'
     }
-]))
+])
 
 const props = defineProps({
     job_vacancies: Object,
     filters: Object
-});
-
-
+})
 </script>

@@ -2,7 +2,12 @@
     <nav class="navbar navbar-expand-sm bg-light shadow-sm navbar-light">
         <div class="container-fluid">
             <Link class="navbar-brand" :href="route('dashboard')">HRIS</Link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -12,8 +17,15 @@
                         Dashboard</Link>
                     </li> -->
                     <li class="nav-item">
-                        <Link class="nav-link" :class="{ active: route().current('recruitment.job_posting.*') }"
-                            :href="route('recruitment.job_posting.index')">Job Vacancies
+                        <Link
+                            class="nav-link"
+                            :class="{
+                                active: route().current(
+                                    'recruitment.job_posting.*'
+                                )
+                            }"
+                            :href="route('recruitment.job_posting.index')"
+                            >Job Vacancies
                         </Link>
                     </li>
                     <!-- <div class="nav-item dropdown">
@@ -30,40 +42,63 @@
                 </ul>
 
                 <div v-if="user" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
-                        $page.props.auth.user?.name }}</a>
-                    <ul class="dropdown-menu dropdown-menu-end ">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        >{{ $page.props.auth.user?.name }}</a
+                    >
+                    <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <Link class="dropdown-item" :href="route('profile.edit')">Profile</Link>
+                            <Link
+                                class="dropdown-item"
+                                :href="route('profile.edit')"
+                                >Profile</Link
+                            >
                         </li>
                         <li v-if="admin">
-                            <Link class="dropdown-item" :href="route('admin.dashboard')">Admin</Link>
+                            <Link
+                                class="dropdown-item"
+                                :href="route('admin.dashboard')"
+                                >Admin</Link
+                            >
                         </li>
                         <li>
-                            <Link class="dropdown-item" :href="route('logout')" method='post' as="button">Logout</Link>
+                            <Link
+                                class="dropdown-item"
+                                :href="route('logout')"
+                                method="post"
+                                as="button"
+                                >Logout</Link
+                            >
                         </li>
                     </ul>
                 </div>
 
                 <div v-else class="nav-item d-flex gap-2">
-                    <Link :href="route('login')" class="btn btn-dark">Sign-In</Link>
-                    <Link :href="route('register')" class="btn btn-secondary">Register</Link>
+                    <Link :href="route('login')" class="btn btn-dark"
+                        >Sign-In</Link
+                    >
+                    <Link :href="route('register')" class="btn btn-secondary"
+                        >Register</Link
+                    >
                 </div>
-
             </div>
         </div>
     </nav>
 </template>
 
 <script setup>
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3'
 
 import { computed } from 'vue'
 
 const user = computed(() => usePage().props.auth.user)
 const admin = computed(() => {
-    const isAdmin = usePage().props.auth.permissions?.map(perm => perm.name).includes('Access Admin');
-    return isAdmin;
+    const isAdmin = usePage()
+        .props.auth.permissions?.map((perm) => perm.name)
+        .includes('Access Admin')
+    return isAdmin
 })
-
 </script>

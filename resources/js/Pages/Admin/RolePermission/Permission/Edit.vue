@@ -6,7 +6,13 @@
         <form @submit.prevent="update">
             <div class="form-group mb-3">
                 <label for="" class="input-label">Permission name</label>
-                <input type="text" name="" id="" class="form-control" v-model="form.permission_name">
+                <input
+                    type="text"
+                    name=""
+                    id=""
+                    class="form-control"
+                    v-model="form.permission_name"
+                />
                 <InputError :message="form.errors.permission_name" />
             </div>
             <button type="submit" class="btn btn-success">Update</button>
@@ -15,13 +21,13 @@
 </template>
 
 <script setup>
-import RolePermissionLayout from '@/Pages/Admin/RolePermission/Layout/RolePermissionLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import RolePermissionLayout from '@/Pages/Admin/RolePermission/Layout/RolePermissionLayout.vue'
+import { useForm } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError.vue'
-import BreadCrumbs from '@/Components/BreadCrumbs.vue';
-import { computed } from 'vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import { computed } from 'vue'
 
-const crumbs = computed(() => ([
+const crumbs = computed(() => [
     {
         label: 'Admin Dashboard',
         link: route('admin.dashboard')
@@ -34,16 +40,16 @@ const crumbs = computed(() => ([
         link: route('admin.role_permission.permission.index')
     },
     {
-        label: props.permission.name,
-    },
-]))
+        label: props.permission.name
+    }
+])
 
 const props = defineProps({
     permission: Object
-});
+})
 
 const form = useForm({
-    permission_name: props.permission.name,
+    permission_name: props.permission.name
 })
 
 // const togglePermission = (e) => {
@@ -56,5 +62,10 @@ const form = useForm({
 //     }
 // }
 
-const update = () => form.put(route('admin.role_permission.permission.update', { permission: props.permission.id }));
+const update = () =>
+    form.put(
+        route('admin.role_permission.permission.update', {
+            permission: props.permission.id
+        })
+    )
 </script>

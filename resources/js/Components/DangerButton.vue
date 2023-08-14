@@ -1,7 +1,5 @@
 <template>
-    <button
-        class="btn btn-danger"
-    >
+    <button class="btn btn-danger">
         <slot />
     </button>
 </template>

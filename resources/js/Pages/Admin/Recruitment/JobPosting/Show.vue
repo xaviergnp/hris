@@ -8,17 +8,31 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h3>{{ props.job_posting.position }}</h3>
                     <div class="d-flex gap-2">
-                        <Link :href="route('admin.recruitment.job_posting.edit', { job_posting: props.job_posting.id })"
-                            class="btn btn-primary">
-                        Edit
+                        <Link
+                            :href="
+                                route('admin.recruitment.job_posting.edit', {
+                                    job_posting: props.job_posting.id
+                                })
+                            "
+                            class="btn btn-primary"
+                        >
+                            Edit
                         </Link>
-                        <Link :href="route('admin.recruitment.job_posting.destroy', { job_posting: props.job_posting.id })"
-                            class="btn btn-danger" method="delete" as="button">
-                        Delete
+                        <Link
+                            :href="
+                                route('admin.recruitment.job_posting.destroy', {
+                                    job_posting: props.job_posting.id
+                                })
+                            "
+                            class="btn btn-danger"
+                            method="delete"
+                            as="button"
+                        >
+                            Delete
                         </Link>
                     </div>
                 </div>
-                <hr>
+                <hr />
             </div>
             <div class="col-12 col-md-6">
                 <dl>
@@ -49,7 +63,9 @@
             <div class="col-12">
                 <dl>
                     <dt>Competency</dt>
-                    <dd style="white-space: pre-wrap;">{{ props.job_posting.competency }}</dd>
+                    <dd style="white-space: pre-wrap">
+                        {{ props.job_posting.competency }}
+                    </dd>
                     <dt>Posting Date</dt>
                     <dd>{{ props.job_posting.posting_date }}</dd>
                     <dt>Closing Date</dt>
@@ -61,16 +77,16 @@
 </template>
 
 <script setup>
-import BreadCrumbs from '@/Components/BreadCrumbs.vue';
-import Salary from '@/Components/Salary.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
-import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import Salary from '@/Components/Salary.vue'
+import { Head, Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
+import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue'
 const props = defineProps({
     job_posting: Object
-});
+})
 
-const crumbs = computed(() => ([
+const crumbs = computed(() => [
     {
         label: 'Admin Dashboard',
         link: route('admin.dashboard')
@@ -83,8 +99,7 @@ const crumbs = computed(() => ([
         link: route('admin.recruitment.job_posting.index')
     },
     {
-        label: props.job_posting.plantilla_item_no,
-    },
-]))
-
+        label: props.job_posting.plantilla_item_no
+    }
+])
 </script>

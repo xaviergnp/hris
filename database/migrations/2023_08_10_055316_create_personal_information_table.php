@@ -36,6 +36,9 @@ return new class extends Migration
             $table->string('tin_number', 255)->nullable();
             $table->string('agency_employee_number', 255)->nullable();
             $table->string('citizenship', 255);
+            $table->boolean('dual_citizenship')->default(false);
+            $table->boolean('by_naturalization')->default(false);
+            $table->boolean('by_birth')->default(false);
             $table->string('country', 255)->nullable();
             $table->boolean('duplicate_address')->default(false);
             $table->string('r_address_house_block_lot_number', 255)->nullable();

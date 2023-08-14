@@ -27,41 +27,54 @@
                         <td>{{ moment(item.posting_date).format('LL') }}</td>
                         <td>{{ moment(item.closing_date).format('LL') }}</td>
                         <td>
-                            <Link :href="route('recruitment.job_posting.show', { job_posting: item.id })"
-                                class="btn btn-dark">Show</Link>
+                            <Link
+                                :href="
+                                    route('recruitment.job_posting.show', {
+                                        job_posting: item.id
+                                    })
+                                "
+                                class="btn btn-dark"
+                                >Show</Link
+                            >
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="text-center text-secondary" v-if="!props.job_vacancies.data.length">No records</div>
+            <div
+                class="text-center text-secondary"
+                v-if="!props.job_vacancies.data.length"
+            >
+                No records
+            </div>
         </div>
-        <Pagination v-if="props.job_vacancies.data.length" :links="props.job_vacancies.links" />
+        <Pagination
+            v-if="props.job_vacancies.data.length"
+            :links="props.job_vacancies.links"
+        />
     </AuthenticatedLayout>
 </template>
 
 <script setup>
-import BreadCrumbs from '@/Components/BreadCrumbs.vue';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import { Head, Link, useForm } from '@inertiajs/vue3'
+import { computed } from 'vue'
 import moment from 'moment'
-import Pagination from '@/Components/Pagination.vue';
+import Pagination from '@/Components/Pagination.vue'
 import Filter from '@/Pages/Recruitment/JobPosting/Components/Filter.vue'
 
-const crumbs = computed(() => ([
+const crumbs = computed(() => [
     {
         label: 'Dashboard',
         link: route('dashboard')
     },
     {
-        label: 'Job Vacancies',
+        label: 'Job Vacancies'
     }
-]))
+])
 
 const props = defineProps({
     job_vacancies: Object,
     filters: Object
-});
-
-
+})
 </script>

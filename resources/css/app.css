@@ -1,19 +1,32 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "vue-wysiwyg/dist/vueWysiwyg.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'vue-wysiwyg/dist/vueWysiwyg.css';
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
 
-
-.center-element{
-    height: 80vh;    
+.center-element {
+    height: 80vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.banner-logo{
+.banner-logo {
     width: 120px;
 }
+
+#pds input[type='text'] {
+    text-transform: uppercase;
+}
+
+/* 
+.tabbable .nav-pills {
+   overflow-x: auto;
+   overflow-y:hidden;
+   flex-wrap: nowrap;
+}
+.tabbable .nav-pills .nav-link {
+  white-space: nowrap;
+} */
