@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('place_of_birth', 255);
             $table->string('sex', 255);
             $table->string('civil_status', 255);
+            $table->string('other_civil_status', 255)->nullable();
+            $table->string('filipino', 255);
             $table->string('height', 255);
             $table->string('weight', 255);
             $table->string('blood_type', 255);
@@ -35,12 +37,12 @@ return new class extends Migration
             $table->string('sss_number', 255)->nullable();
             $table->string('tin_number', 255)->nullable();
             $table->string('agency_employee_number', 255)->nullable();
-            $table->string('citizenship', 255);
+            $table->string('citizenship', 255)->nullable();
             $table->boolean('dual_citizenship')->default(false);
             $table->boolean('by_naturalization')->default(false);
             $table->boolean('by_birth')->default(false);
             $table->string('country', 255)->nullable();
-            $table->boolean('duplicate_address')->default(false);
+            $table->boolean('same_address')->default(false);
             $table->string('r_address_house_block_lot_number', 255)->nullable();
             $table->string('r_address_street', 255)->nullable();
             $table->string('r_address_subdivision_village', 255)->nullable();

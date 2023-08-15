@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import DeleteUserForm from './Partials/DeleteUserForm.vue'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue'
-import { Head } from '@inertiajs/vue3'
+import { Head, Link } from '@inertiajs/vue3'
 
 defineProps({
     mustVerifyEmail: {
@@ -29,11 +29,8 @@ defineProps({
             <div class="container d-flex flex-column gap-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        <UpdateProfileInformationForm
-                            :must-verify-email="mustVerifyEmail"
-                            :status="status"
-                            class="max-w-xl"
-                        />
+                        <UpdateProfileInformationForm :must-verify-email="mustVerifyEmail" :status="status"
+                            class="max-w-xl" />
                     </div>
                 </div>
 

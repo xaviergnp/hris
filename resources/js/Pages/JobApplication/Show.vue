@@ -3,27 +3,16 @@
     <AuthenticatedLayout>
         <BreadCrumbs :crumbs="crumbs" />
         <div class="progress">
-            <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 33.33%"
-                aria-valuenow="33.33"
-                aria-valuemin="0"
-                aria-valuemax="100"
-            ></div>
+            <div class="progress-bar" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0"
+                aria-valuemax="100"></div>
         </div>
         <div class="d-flex justify-content-around align-items-center mb-2">
             <h6>Fill-up/Update PDS</h6>
             <h6>Upload Attachments</h6>
             <h6>Review</h6>
         </div>
-        <div class="container bg-light w-100 shadow" style="height: 80vh">
-            <div class="container py-2 rounded" style="background: #ebebeb">
-                <PDS />
-            </div>
-            <div class="d-flex justify-content-end mt-2">
-                <button class="btn btn-primary">Next</button>
-            </div>
+        <div class="container rounded p-4" style="background: #ebebeb">
+            <PDS :personal_information="personal_information" />
         </div>
     </AuthenticatedLayout>
 </template>
@@ -36,7 +25,8 @@ import { Head } from '@inertiajs/vue3'
 import PDS from '@/Pages/PDS/Index.vue'
 
 const props = defineProps({
-    job_posting: Object
+    job_posting: Object,
+    personal_information: Object
 })
 
 const crumbs = computed(() => [

@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function job_posting() : HasMany {
         return $this->hasMany(JobPosting::class, 'by_user_id');
+    }
+
+    public function personal_information() : HasOne {
+        return $this->hasOne(PersonalInformation::class, 'user_id');
     }
 }

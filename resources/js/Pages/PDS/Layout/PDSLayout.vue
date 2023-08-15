@@ -3,14 +3,8 @@
     <div class="tabbable">
         <ul class="nav nav-pills" style="display: flex" role="tablist">
             <li class="nav-item" v-for="page in pages">
-                <a
-                    @click="onChangeNav"
-                    href="#"
-                    class="nav-link"
-                    :data-show-nav="page.id"
-                    :class="{ active: page.active }"
-                    >{{ page.label }}</a
-                >
+                <a @click="onChangeNav" href="#" class="nav-link" :data-show-nav="page.id"
+                    :class="{ active: page.active }">{{ page.label }}</a>
             </li>
         </ul>
         <hr />

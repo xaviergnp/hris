@@ -1,6 +1,8 @@
 <template>
     <PDSLayout :pages="pages" @change-nav="(page_id) => changeNav(page_id)">
-        <PersonalInformation v-if="activePage === 'personal'" />
+        <PersonalInformation v-if="activePage === 'personal'" @change-nav="(page_id) => changeNav(page_id)"
+            :personal_information="personal_information" />
+        <FamilyBackground v-else-if="activePage === 'family'" @change-nav="(page_id) => changeNav(page_id)" />
     </PDSLayout>
 </template>
 
@@ -10,6 +12,10 @@ import FamilyBackground from './FamilyBackground.vue'
 import PDSLayout from './Layout/PDSLayout.vue'
 import { computed } from 'vue'
 import { ref } from 'vue'
+
+const props = defineProps({
+    personal_information: Object
+});
 
 const pages = ref([
     {

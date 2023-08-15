@@ -27,11 +27,11 @@ class JobApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPosting $job_posting)
+    public function show(Request $request, JobPosting $job_posting)
     {
         return inertia('JobApplication/Show', [
-            "job_posting" => $job_posting
-        ]);
+            "job_posting" => $job_posting,
+            "personal_information" => $request->user()->personal_information ]);
     }
 
     /**
