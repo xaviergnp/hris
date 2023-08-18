@@ -40,7 +40,7 @@ const closeModal = () => {
 <template>
     <section class="space-y-6">
         <header>
-            <h2 class="text-lg font-medium text-gray-900">Delete Account</h2>
+            <h4 class="text-lg font-medium text-gray-900">Delete Account</h4>
 
             <p class="mt-1 text-sm text-gray-600">
                 Once your account is deleted, all of its resources and data will
@@ -49,25 +49,15 @@ const closeModal = () => {
             </p>
         </header>
 
-        <div
-            class="modal fade"
-            id="deleteAccountModal"
-            tabindex="-1"
-            aria-labelledby="deleteAccountModalLabel"
-            aria-hidden="true"
-        >
+        <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
                             Confirmation
                         </h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="p-6">
@@ -83,44 +73,21 @@ const closeModal = () => {
                             </p>
 
                             <div class="mt-6">
-                                <InputLabel
-                                    for="password"
-                                    value="Password"
-                                    class="sr-only"
-                                />
+                                <InputLabel for="password" value="Password" class="sr-only" />
 
-                                <TextInput
-                                    id="password"
-                                    ref="passwordInput"
-                                    v-model="form.password"
-                                    type="password"
-                                    class="mt-1 block w-3/4"
-                                    placeholder="Password"
-                                    @keyup.enter="deleteUser"
-                                />
+                                <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
+                                    class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" />
 
-                                <InputError
-                                    :message="form.errors.password"
-                                    class="mt-2"
-                                />
+                                <InputError :message="form.errors.password" class="mt-2" />
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button
-                            type="button"
-                            class="btn btn-danger"
-                            :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing"
-                            @click="deleteUser"
-                        >
+                        <button type="button" class="btn btn-danger" :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing" @click="deleteUser">
                             Delete Account
                         </button>
                     </div>
@@ -128,12 +95,7 @@ const closeModal = () => {
             </div>
         </div>
 
-        <button
-            type="button"
-            class="btn btn-danger"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteAccountModal"
-        >
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
             Delete Account
         </button>
     </section>

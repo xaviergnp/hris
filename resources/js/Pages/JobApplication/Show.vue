@@ -12,7 +12,6 @@
             <h6>Review</h6>
         </div>
         <div class="container rounded p-4" style="background: #ebebeb">
-            <PDS :personal_information="personal_information" />
         </div>
     </AuthenticatedLayout>
 </template>
@@ -22,7 +21,6 @@ import BreadCrumbs from '@/Components/BreadCrumbs.vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { computed } from 'vue'
 import { Head } from '@inertiajs/vue3'
-import PDS from '@/Pages/PDS/Index.vue'
 
 const props = defineProps({
     job_posting: Object,

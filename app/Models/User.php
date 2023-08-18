@@ -53,4 +53,10 @@ class User extends Authenticatable
     public function personal_information() : HasOne {
         return $this->hasOne(PersonalInformation::class, 'user_id');
     }
+    public function family_background() : HasOne {
+        return $this->hasOne(FamilyBackground::class, 'user_id');
+    }
+    public function children() : HasMany {
+        return $this->hasMany(Children::class, 'user_id');
+    }
 }

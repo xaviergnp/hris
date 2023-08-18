@@ -52,8 +52,8 @@ class PersonalInformationController extends Controller
             "p_address_city_municipality" =>"string|max:255|nullable",
             "p_address_zipcode" =>"string|max:255|nullable",
             "p_address_province" => "string|max:255|nullable",
-            "telephone_number" =>"string|max:255|nullable",
-            "mobile_number" =>"string|max:255|nullable",
+            "telephone_number" =>"string|nullable",
+            "mobile_number" =>"string|nullable",
             "email_address" =>"email|max:255|nullable",
             "duplicate_address" =>"boolean",
             "civil_status" =>"required|string|max:255",
@@ -66,10 +66,10 @@ class PersonalInformationController extends Controller
             "same_address" => "boolean"
         ]);
 
-        if($request->user()->personal_information()->exists()){ // UPDATE PERSONAL INFO
+        if($request->user()->personal_information()->exists()){ // IF PROFILE INFORMATION EXISTS, UPDATE PERSONAL INFO
             $request->user()->personal_information()->update($validateData);
             return back()->with('success', 'Personal information updated.');
-        }else{ // CREATE PERSONAL INFO
+        }else{ //  // IF PROFILE INFORMATION DOESN'T EXISTS, CREATE PERSONAL INFO
             $request->user()->personal_information()->create($validateData);
             return back()->with('success', 'Personal information saved.');
         }

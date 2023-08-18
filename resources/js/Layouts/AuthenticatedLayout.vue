@@ -10,10 +10,7 @@
             <!-- Page Content -->
             <main>
                 <div class="container mt-3">
-                    <div
-                        class="alert alert-success"
-                        v-if="$page.props.ziggy.flash.success"
-                    >
+                    <div class="alert alert-success" v-if="$page.props.ziggy.flash.success">
                         {{ $page.props.ziggy.flash.success }}
                     </div>
                     <slot />
