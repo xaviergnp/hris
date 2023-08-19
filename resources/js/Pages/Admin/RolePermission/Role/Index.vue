@@ -1,83 +1,84 @@
 <template>
-    <RolePermissionLayout>
-        <template #header>
-            <BreadCrumbs :crumbs="crumbs" />
-        </template>
-        <!-- <div class="table-reponsive"> -->
-        <button
+  <RolePermissionLayout>
+    <template #header>
+      <BreadCrumbs :crumbs="crumbs" />
+    </template>
+    <!-- <div class="table-reponsive"> -->
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addRoleModal"
+    >
+      Create Role
+    </button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="role in roles.data">
+          <td>{{ role.name }}</td>
+          <td class="d-flex gap-2">
+            <Link
+              class="btn btn-success"
+              :href="
+                route('admin.role_permission.role.edit', {
+                  role: role.id
+                })
+              "
+            >
+              Edit
+            </Link>
+            <Link
+              class="btn btn-danger"
+              method="delete"
+              :href="
+                route('admin.role_permission.role.destroy', {
+                  role: role.id
+                })
+              "
+              as="button"
+            >
+              Delete
+            </Link>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <Pagination :links="roles.links" />
+    <!-- </div> -->
+  </RolePermissionLayout>
+  <Modal modal_id="addRoleModal">
+    <template #header>Create Role</template>
+    <template #body>
+      <form @submit.prevent="addRole">
+        <div class="form-group">
+          <label for="" class="input-label">Role Name</label>
+          <input
+            id=""
+            v-model="addForm.role_name"
+            type="text"
+            name=""
+            class="form-control"
+          />
+          <InputError :message="addForm.errors.role_name" />
+        </div>
+        <div class="mt-3">
+          <button
+            type="submit"
             class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#addRoleModal"
-        >
-            Create Role
-        </button>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="role in roles.data">
-                    <td>{{ role.name }}</td>
-                    <td class="d-flex gap-2">
-                        <Link
-                            class="btn btn-success"
-                            :href="
-                                route('admin.role_permission.role.edit', {
-                                    role: role.id
-                                })
-                            "
-                        >
-                            Edit</Link
-                        >
-                        <Link
-                            class="btn btn-danger"
-                            method="delete"
-                            :href="
-                                route('admin.role_permission.role.destroy', {
-                                    role: role.id
-                                })
-                            "
-                            as="button"
-                            >Delete
-                        </Link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <Pagination :links="roles.links" />
-        <!-- </div> -->
-    </RolePermissionLayout>
-    <Modal modal_id="addRoleModal">
-        <template #header>Create Role</template>
-        <template #body>
-            <form @submit.prevent="addRole">
-                <div class="form-group">
-                    <label for="" class="input-label">Role Name</label>
-                    <input
-                        type="text"
-                        name=""
-                        id=""
-                        class="form-control"
-                        v-model="addForm.role_name"
-                    />
-                    <InputError :message="addForm.errors.role_name" />
-                </div>
-                <div class="mt-3">
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                        :class="{ 'opacity-25': addForm.processing }"
-                        :disabled="addForm.processing"
-                    >
-                        <Spinner :processing="addForm.processing" /> Save
-                    </button>
-                </div>
-            </form>
-        </template>
-    </Modal>
+            :class="{ 'opacity-25': addForm.processing }"
+            :disabled="addForm.processing"
+          >
+            <Spinner :processing="addForm.processing" /> Save
+          </button>
+        </div>
+      </form>
+    </template>
+  </Modal>
 </template>
 
 <script setup>
@@ -91,30 +92,30 @@ import BreadCrumbs from '@/Components/BreadCrumbs.vue'
 import { computed } from 'vue'
 
 const crumbs = computed(() => [
-    {
-        label: 'Admin Dashboard',
-        link: route('admin.dashboard')
-    },
-    {
-        label: 'Roles and Permission'
-    },
-    {
-        label: 'Roles'
-    }
+  {
+    label: 'Admin Dashboard',
+    link: route('admin.dashboard'),
+  },
+  {
+    label: 'Roles and Permission',
+  },
+  {
+    label: 'Roles',
+  },
 ])
 
 const props = defineProps({
-    roles: Object
+  roles: Object,
 })
 
 const addForm = useForm({
-    role_name: null
+  role_name: null,
 })
 
 const addRole = () =>
-    addForm.post(route('admin.role_permission.role.store'), {
-        onSuccess: () => {
-            addForm.role_name = null
-        }
-    })
+  addForm.post(route('admin.role_permission.role.store'), {
+    onSuccess: () => {
+      addForm.role_name = null
+    },
+  })
 </script>

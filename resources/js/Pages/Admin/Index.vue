@@ -1,8 +1,8 @@
 <template>
-    <Head title="Admin Panel" />
-    <AdminLayout>
-        <h1>Admin</h1>
-    </AdminLayout>
+  <Head title="Admin Panel" />
+  <AdminLayout>
+    <h1>Admin</h1>
+  </AdminLayout>
 </template>
 
 <script setup>

@@ -1,7 +1,7 @@
 <template>
-    <Head title="Roles" />
+  <Head title="Roles" />
 
-    <RolePermissionLayout> </RolePermissionLayout>
+  <RolePermissionLayout />
 </template>
 
 <script setup>

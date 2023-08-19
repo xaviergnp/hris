@@ -2,10 +2,10 @@
 import { onMounted, ref } from 'vue'
 
 defineProps({
-    modelValue: {
-        type: String,
-        required: true
-    }
+  modelValue: {
+    type: String,
+    required: true,
+  },
 })
 
 defineEmits(['update:modelValue'])
@@ -13,19 +13,19 @@ defineEmits(['update:modelValue'])
 const input = ref(null)
 
 onMounted(() => {
-    if (input.value.hasAttribute('autofocus')) {
-        input.value.focus()
-    }
+  if (input.value.hasAttribute('autofocus')) {
+    input.value.focus()
+  }
 })
 
 defineExpose({ focus: () => input.value.focus() })
 </script>
 
 <template>
-    <input
-        class="form-control"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        ref="input"
-    />
+  <input
+    ref="input"
+    class="form-control"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
 </template>
