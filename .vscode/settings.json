@@ -1,0 +1,15 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptvue",
+    "vue"
+  ],
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },  
+  "workbench.colorTheme": "Default Dark+",
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontWeight": "400",
+ // "eslint.options": { "overrideConfigFile": "C:/Users/JESTER/Documents/Web Development Projects/hris/.eslintrc.cjs" }
+}

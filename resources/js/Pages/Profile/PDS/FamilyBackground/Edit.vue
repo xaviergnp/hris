@@ -155,7 +155,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="child in children">
+                <tr v-for="child in children" :key="child.id">
                   <td>{{ child.fullname }}</td>
                   <td>{{ child.date_of_birth }}</td>
                   <td>
