@@ -17,6 +17,30 @@
           Family Background
         </Link>
       </li>
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.educational_background.edit')" class="nav-link"
+          :class="{ active: route().current('profile.pds.educational_background.edit') }"
+        >
+          Educational Background
+        </Link>
+      </li>
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.civil_service_eligibility.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.civil_service_eligibility.*') }"
+        >
+          Civil Service Eligibility
+        </Link>
+      </li>
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.work_experience.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.work_experience.*') }"
+        >
+          Work Experience
+        </Link>
+      </li>
     </ul>
     <hr />
     <div id="pds" class="container">
@@ -26,52 +50,5 @@
 </template>
 
 <script setup>
-import { Link, usePage } from '@inertiajs/vue3'
-import { ref } from 'vue'
-
-const props = defineProps({
-  pages: Array,
-})
-
-const pages = ref([
-  {
-    link: route('profile.pds.personal_information.edit'),
-    label: 'Personal Information',
-  },
-  {
-    // link: 'family',
-    link: route('profile.pds.family_background.edit'),
-    label: 'Family Background',
-  },
-  {
-    // link: 'education',
-    link: null,
-    label: 'Educational Background',
-  },
-  {
-    // link: 'eligibility',
-    link: null,
-    label: 'Civil Service Eligibility',
-  },
-  {
-    // link: 'work_experience',
-    link: null,
-    label: 'Work Experience',
-  },
-  {
-    // link: 'vouluntary_work',
-    link: null,
-    label: 'Voluntary Work or Involvement',
-  },
-  {
-    // link: 'learning_development',
-    link: null,
-    label: 'Learning and Development',
-  },
-  {
-    // link: 'other_information',
-    link: null,
-    label: 'Other Information',
-  },
-])
+import { Link } from '@inertiajs/vue3'
 </script>

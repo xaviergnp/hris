@@ -1,0 +1,71 @@
+<template>
+  <ProfileLayout>
+    <template #header><h3>Personal Data Sheet</h3></template>
+    <PDSLayout>
+      <Link :href="route('profile.pds.work_experience.create')" class="btn btn-success">Add Work Experience</Link>
+
+      
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered mt-3">
+          <thead>
+            <tr>
+              <th scope="col">FROM</th>
+              <th scope="col">TO</th>
+              <th scope="col">POSITION</th>
+              <th scope="col">DEPARTMENT / AGENCY / OFFICE / COMPANY</th>
+              <th scope="col">MONTHLY SALARY</th>
+              <th scope="col">SALARY GRADE</th>
+              <th scope="col">STATUS OF APPOINTMENT</th>
+            </tr>
+          </thead>
+          <tbody v-if="props.work_experiences.data.length" style="text-transform: uppercase;">
+            <tr v-for="work_experience in props.work_experiences.data" :key="work_experience.id">
+              <td scope="row">{{ work_experience.inclusive_date_from }}</td>
+              <td>{{ work_experience.inclusive_date_to }}</td>
+              <td>{{ work_experience.position_title }}</td>
+              <td>{{ work_experience.dept_agency_office_company }}</td>
+              <td>{{ work_experience.monthly_salary }}</td>
+              <td>{{ work_experience.paygrade }}</td>
+              <td>{{ work_experience.status_of_appointment }}</td>
+              <td>
+                <div class="d-flex gap-2">
+                  <Link
+                    class="btn btn-primary btn-sm"
+                    :href="route('profile.pds.work_experience.edit', { work_experience: work_experience.id })"
+                    preserve-scroll
+                  >
+                    Edit
+                  </Link>
+                  <Link
+                    as="button" class="btn btn-danger btn-sm" method="delete"
+                    :href="route('profile.pds.work_experience.destroy', { work_experience: work_experience.id })"
+                    preserve-scroll
+                  >
+                    Delete
+                  </Link>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <div v-if="!props.eligibilities.data.length" class="text-center">No records to display</div> -->
+      </div>
+      <!-- <Pagination
+        v-if="props.eligibilities.data.length > 10"
+        :links="props.eligibilities.links"
+      /> -->
+    </PDSLayout>
+  </ProfileLayout>
+</template>
+
+<script setup>
+import ProfileLayout from '@/Pages/Profile/Layout/ProfileLayout.vue'
+import PDSLayout from '@/Pages/Profile/PDS/Layout/PDSLayout.vue'
+import { useForm, Link } from '@inertiajs/vue3'
+import Pagination from '@/Components/Pagination.vue'
+
+const props = defineProps({
+  work_experiences: Array,
+})
+
+</script>

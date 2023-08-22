@@ -146,7 +146,7 @@
               Add
               Child
             </button>
-            <table class="table table-striped" style="text-transform: uppercase;">
+            <table class="table table-bordered table-sm" style="text-transform: uppercase;">
               <thead>
                 <tr>
                   <th>Full Name</th>
@@ -187,7 +187,13 @@
                   form.wasSuccessful ? 'Saved' : 'Save' }}
               </button>
               <Link
-                :href="route('profile.pds.family_background.edit')" type="button" :disabled="form.isDirty"
+                :href="route('profile.pds.personal_information.edit')" type="button" :disabled="form.isDirty"
+                class="btn btn-primary"
+              >
+                Previous
+              </Link>
+              <Link
+                :href="route('profile.pds.educational_background.edit')" type="button" :disabled="form.isDirty"
                 class="btn btn-primary"
               >
                 Next

@@ -153,16 +153,16 @@
 
           <div class="col-12 col-md-2">
             <div class="mb-3">
-              <label for="height" class="form-label">Height</label>
-              <input id="height" v-model="form.height" type="number" class="form-control form-control-sm" />
+              <label for="height" class="form-label">Height (m)</label>
+              <input id="height" v-model="form.height" type="text" class="form-control form-control-sm" />
               <InputError :message="form.errors.height" />
             </div>
           </div>
 
           <div class="col-12 col-md-2">
             <div class="mb-3">
-              <label for="weight" class="form-label">Weight</label>
-              <input id="weight" v-model="form.weight" type="number" class="form-control form-control-sm" />
+              <label for="weight" class="form-label">Weight (kg)</label>
+              <input id="weight" v-model="form.weight" type="text" class="form-control form-control-sm" />
               <InputError :message="form.errors.weight" />
             </div>
           </div>

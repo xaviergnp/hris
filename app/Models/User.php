@@ -59,4 +59,13 @@ class User extends Authenticatable
     public function children() : HasMany {
         return $this->hasMany(Children::class, 'user_id');
     }
+    public function educational_background() : HasOne {
+        return $this->hasOne(EducationalBackground::class, 'user_id');
+    }
+    public function civil_service_eligibility() : HasMany {
+        return $this->hasMany(CivilServiceEligibility::class, 'user_id');
+    }
+    public function work_experience() : HasMany {
+        return $this->hasMany(WorkExperience::class, 'user_id');
+    }
 }
