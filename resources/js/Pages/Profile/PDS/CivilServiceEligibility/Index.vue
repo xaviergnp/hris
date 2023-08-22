@@ -64,7 +64,7 @@ import { useForm, Link } from '@inertiajs/vue3'
 import Pagination from '@/Components/Pagination.vue'
 
 const props = defineProps({
-  eligibilities: Array,
+  eligibilities: Object,
 })
 
 </script>
