@@ -14,7 +14,7 @@ class WorkExperienceController extends Controller
     public function index(Request $request)
     {
         return inertia('Profile/PDS/WorkExperience/Index', [
-            'work_experiences' => $request->user()->work_experience()->paginate(10)
+            'work_experiences' => $request->user()->work_experience()->mostRecent()->paginate(10)
         ]);
     }
 
@@ -31,7 +31,25 @@ class WorkExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            "inclusive_date_from"=> "required|date",
+            "inclusive_date_to"=> "required|date",
+            "position_title"=> "required|string",
+            "dept_agency_office_company"=> "required|string",
+            "name_of_office_unit"=> "string|nullable",
+            "office_address"=> "string",
+            "immediate_supervisor"=> "string|nullable",
+            "monthly_salary"=> "required|decimal:2",
+            "paygrade"=> "string|nullable",
+            "status_of_appointment"=> "string|nullable",
+            "govt_service"=> "boolean|nullable",
+            "list_of_accomplishments"=> "string|nullable",
+            "summary_of_duties"=> "string|nullable",
+        ]);
+
+        $request->user()->work_experience()->create($validate);
+
+        return back()->with('success', 'Work experience has been saved.');
     }
 
     /**
@@ -47,7 +65,9 @@ class WorkExperienceController extends Controller
      */
     public function edit(WorkExperience $workExperience)
     {
-        //
+        return inertia('Profile/PDS/WorkExperience/Edit', [
+            "work_experience" => $workExperience
+        ]);
     }
 
     /**
@@ -55,7 +75,25 @@ class WorkExperienceController extends Controller
      */
     public function update(Request $request, WorkExperience $workExperience)
     {
-        //
+        $validate = $request->validate([
+            "inclusive_date_from"=> "required|date",
+            "inclusive_date_to"=> "required|date",
+            "position_title"=> "required|string",
+            "dept_agency_office_company"=> "required|string",
+            "name_of_office_unit"=> "string|nullable",
+            "office_address"=> "string",
+            "immediate_supervisor"=> "string|nullable",
+            "monthly_salary"=> "required|decimal:2",
+            "paygrade"=> "string|nullable",
+            "status_of_appointment"=> "string|nullable",
+            "govt_service"=> "boolean|nullable",
+            "list_of_accomplishments"=> "string|nullable",
+            "summary_of_duties"=> "string|nullable",
+        ]);
+
+        $workExperience->update($validate);
+
+        return back()->with('success', 'Work experience has been updated.');
     }
 
     /**
@@ -63,6 +101,7 @@ class WorkExperienceController extends Controller
      */
     public function destroy(WorkExperience $workExperience)
     {
-        //
+        $workExperience->delete();
+        return back()->with('success', 'Work experience has been deleted.');
     }
 }

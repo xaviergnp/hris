@@ -1,0 +1,37 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('learning_and_development', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->foreignIdFor(User::class, 'user_id')->constrained('users');
+
+            $table->string('title_of_learning', 255)->nullable();
+            $table->date('inclusive_date_from')->nullable();
+            $table->date('inclusive_date_to')->nullable();
+            $table->string('number_of_hours', 255)->nullable();
+            $table->string('type_of_ld', 255)->nullable();
+            $table->string('conducted_sponsored_by', 255)->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('learning_and_development');
+    }
+};

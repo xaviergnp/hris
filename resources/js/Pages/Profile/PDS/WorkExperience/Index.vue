@@ -3,8 +3,6 @@
     <template #header><h3>Personal Data Sheet</h3></template>
     <PDSLayout>
       <Link :href="route('profile.pds.work_experience.create')" class="btn btn-success">Add Work Experience</Link>
-
-      
       <div class="table-responsive">
         <table class="table table-sm table-bordered mt-3">
           <thead>
@@ -48,12 +46,12 @@
             </tr>
           </tbody>
         </table>
-        <!-- <div v-if="!props.eligibilities.data.length" class="text-center">No records to display</div> -->
+        <div v-if="!props.work_experiences.data.length" class="text-center">No records to display</div>
       </div>
-      <!-- <Pagination
-        v-if="props.eligibilities.data.length > 10"
-        :links="props.eligibilities.links"
-      /> -->
+      <Pagination
+        v-if="props.work_experiences.data.length > 10"
+        :links="props.work_experiences.links"
+      />
     </PDSLayout>
   </ProfileLayout>
 </template>

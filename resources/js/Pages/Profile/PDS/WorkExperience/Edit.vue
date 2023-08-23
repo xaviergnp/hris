@@ -5,7 +5,7 @@
     </template>
 
     <PDSLayout>
-      <form @submit.prevent="addWork">
+      <form @submit.prevent="saveWork">
         <div class="row">
           <div class="form-group col-6">
             <div class="mb-3">
@@ -194,17 +194,8 @@
 
           <div class="col-12">
             <div class="d-flex gap-2">
-              <div class="d-flex align-items-center">
-                <b v-if="workForm.isDirty" class="text-danger form-status">Not Saved</b>
-              </div>
               <Link :href="route('profile.pds.work_experience.index')" class="btn btn-secondary" :disabled="workForm.processing" type="submit">  Back</Link>
-              <button
-                type="submit" :disabled="!workForm.isDirty && workForm.wasSuccessful"
-                class="btn btn-success"
-              >
-                <Spinner :processing="workForm.processing" /> {{ !workForm.isDirty &&
-                  workForm.wasSuccessful ? 'Added' : 'Add' }}
-              </button>
+              <button class="btn btn-success" :disabled="workForm.processing" type="submit"><Spinner :processing="workForm.processing" />  Save</button>
             </div>
           </div>
         </div>
@@ -220,28 +211,30 @@ import InputError from '@/Components/InputError.vue'
 import ProfileLayout from '@/Pages/Profile/Layout/ProfileLayout.vue'
 import PDSLayout from '@/Pages/Profile/PDS/Layout/PDSLayout.vue'
 
-const workForm = useForm({
-  inclusive_date_from: null,
-  inclusive_date_to: null,
-  position_title: null,
-  dept_agency_office_company: null,
-  name_of_office_unit: null,
-  office_address: null,
-  immediate_supervisor: null,
-  monthly_salary: null,
-  paygrade: null,
-  status_of_appointment: null,
-  govt_service: null,
-  list_of_accomplishments: null,
-  summary_of_duties: null,
+const props = defineProps({
+  work_experience: Object,
 })
 
-const addWork = () => {
-  workForm.post(route('profile.pds.work_experience.store'), {
+
+const workForm = useForm({
+  inclusive_date_from: props.work_experience.inclusive_date_from,
+  inclusive_date_to:  props.work_experience.inclusive_date_to,
+  position_title:  props.work_experience.position_title,
+  dept_agency_office_company:  props.work_experience.dept_agency_office_company,
+  name_of_office_unit:  props.work_experience.name_of_office_unit,
+  office_address:  props.work_experience.office_address,
+  immediate_supervisor:  props.work_experience.immediate_supervisor,
+  monthly_salary:  props.work_experience.monthly_salary,
+  paygrade:  props.work_experience.paygrade,
+  status_of_appointment:  props.work_experience.status_of_appointment,
+  govt_service:  props.work_experience.govt_service,
+  list_of_accomplishments:  props.work_experience.list_of_accomplishments,
+  summary_of_duties:  props.work_experience.summary_of_duties,
+})
+
+const saveWork = () => {
+  workForm.put(route('profile.pds.work_experience.update', {work_experience: props.work_experience.id}), {
     preserveScroll: true,
-    onSuccess: () => {
-      workForm.reset()
-    },
   })
 }
 </script>

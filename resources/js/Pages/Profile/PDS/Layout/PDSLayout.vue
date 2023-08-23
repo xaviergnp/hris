@@ -9,6 +9,8 @@
           Personal Information
         </Link>
       </li>
+
+
       <li class="nav-item">
         <Link
           preserve-state :href="route('profile.pds.family_background.edit')" class="nav-link"
@@ -17,6 +19,8 @@
           Family Background
         </Link>
       </li>
+
+
       <li class="nav-item">
         <Link
           preserve-state :href="route('profile.pds.educational_background.edit')" class="nav-link"
@@ -25,6 +29,8 @@
           Educational Background
         </Link>
       </li>
+
+
       <li class="nav-item">
         <Link
           preserve-state :href="route('profile.pds.civil_service_eligibility.index')" class="nav-link"
@@ -33,12 +39,44 @@
           Civil Service Eligibility
         </Link>
       </li>
+
+
       <li class="nav-item">
         <Link
           preserve-state :href="route('profile.pds.work_experience.index')" class="nav-link"
           :class="{ active: route().current('profile.pds.work_experience.*') }"
         >
           Work Experience
+        </Link>
+      </li>
+
+
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.voluntary_work.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.voluntary_work.*') }"
+        >
+          Voluntary Work
+        </Link>
+      </li>
+
+
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.learning_and_development.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.learning_and_development.*') }"
+        >
+          Learning and Development
+        </Link>
+      </li>
+
+
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.other_information.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.other_information.*') }"
+        >
+          Other Information
         </Link>
       </li>
     </ul>

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\PDS\OtherInformationController;
 use App\Http\Controllers\PDS\CivilServiceEligibilityController;
 use App\Http\Controllers\PDS\EducationalBackgroundController;
 use App\Http\Controllers\PDS\FamilyBackgroundController;
+use App\Http\Controllers\PDS\LearningAndDevelopmentController;
 use App\Http\Controllers\PDS\PersonalInformationController;
+use App\Http\Controllers\PDS\VoluntaryWorkController;
 use App\Http\Controllers\PDS\WorkExperienceController;
-use App\Models\CivilServiceEligibility;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,7 +35,18 @@ Route::prefix('profile/pds')
     Route::resource('civil_service_eligibility', CivilServiceEligibilityController::class)->only(['index', 'store', 'destroy', 'create', 'edit', 'update']);
 
     // work experience
-    Route::resource('work_experience', WorkExperienceController::class)->only(['index', 'store', 'destroy', 'create', 'edit', 'update']);
+    Route::resource('work_experience', WorkExperienceController::class);
+
+    // work experience
+    Route::resource('voluntary_work', VoluntaryWorkController::class);
+
+    // learning and development
+    Route::resource('learning_and_development', LearningAndDevelopmentController::class);
+    
+    // other information
+    Route::name('other_information.edit')->get('/other_information/edit', [OtherInformationController::class, 'edit']);
+    Route::name('other_information.index')->get('/other_information', [OtherInformationController::class, 'index']);
+    Route::name('other_information.store_or_update')->post('/other_information/store_or_update', [OtherInformationController::class, 'store_or_update']);
 });
 
 

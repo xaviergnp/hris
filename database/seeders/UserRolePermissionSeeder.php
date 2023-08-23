@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Registered;
 
 
         $permissions = ['Access Admin', 'Manage Roles and Permissions', 'Manage Job Vacancies'];
-        $roles = ['superadmin', 'admin', 'hr'];
+        $roles = ['superadmin', 'admin', 'hr', 'user'];
 
         foreach($roles as $role){
             Role::create(['name' => $role]);

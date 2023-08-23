@@ -68,4 +68,13 @@ class User extends Authenticatable
     public function work_experience() : HasMany {
         return $this->hasMany(WorkExperience::class, 'user_id');
     }
+    public function voluntary_work() : HasMany {
+        return $this->hasMany(VoluntaryWork::class, 'user_id');
+    }
+    public function learning_and_development() : HasMany {
+        return $this->hasMany(LearningAndDevelopment::class, 'user_id');
+    }
+    public function other_information() : HasOne {
+        return $this->hasOne(OtherInformation::class, 'user_id');
+    }
 }
