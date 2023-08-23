@@ -194,8 +194,8 @@
           <div class="col-12 col-md-6">
             <div class="mb-3">
               <label class="form-label">HIGHEST LEVEL/UNITS EARNED (if not graduated)</label>
-              <input v-model="form.vocational_period_to" type="number" class="form-control form-control-sm" />
-              <InputError :message="form.errors.vocational_period_to" />
+              <input v-model="form.vocational_highest_lvl_units_earned" type="number" class="form-control form-control-sm" />
+              <InputError :message="form.errors.vocational_highest_lvl_units_earned" />
             </div>
           </div>
 
