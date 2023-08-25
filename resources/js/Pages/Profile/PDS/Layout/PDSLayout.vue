@@ -79,6 +79,26 @@
           Other Information
         </Link>
       </li>
+
+
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.page_four_questions.edit')" class="nav-link"
+          :class="{ active: route().current('profile.pds.page_four_questions.*') }"
+        >
+          Questions
+        </Link>
+      </li>
+
+
+      <li class="nav-item">
+        <Link
+          preserve-state :href="route('profile.pds.reference_id.index')" class="nav-link"
+          :class="{ active: route().current('profile.pds.reference_id.*') }"
+        >
+          References and ID
+        </Link>
+      </li>
     </ul>
     <hr />
     <div id="pds" class="container">

@@ -5,6 +5,8 @@ use App\Http\Controllers\PDS\CivilServiceEligibilityController;
 use App\Http\Controllers\PDS\EducationalBackgroundController;
 use App\Http\Controllers\PDS\FamilyBackgroundController;
 use App\Http\Controllers\PDS\LearningAndDevelopmentController;
+use App\Http\Controllers\PDS\PageFourQuestionsController;
+use App\Http\Controllers\PDS\PageFourReferencesIdController;
 use App\Http\Controllers\PDS\PersonalInformationController;
 use App\Http\Controllers\PDS\VoluntaryWorkController;
 use App\Http\Controllers\PDS\WorkExperienceController;
@@ -47,6 +49,17 @@ Route::prefix('profile/pds')
     Route::name('other_information.edit')->get('/other_information/edit', [OtherInformationController::class, 'edit']);
     Route::name('other_information.index')->get('/other_information', [OtherInformationController::class, 'index']);
     Route::name('other_information.store_or_update')->post('/other_information/store_or_update', [OtherInformationController::class, 'store_or_update']);
+
+    // page four questions
+    Route::name('page_four_questions.edit')->get('/page_four_questions/edit', [PageFourQuestionsController::class, 'edit']);
+    Route::name('page_four_questions.store_or_update')->post('/page_four_questions/{page_four_questions?}/store_or_update', [PageFourQuestionsController::class, 'store_or_update']);
+
+    // page four references and government issued id
+    // other information
+    Route::name('reference_id.edit')->get('/reference_id/edit', [PageFourReferencesIdController::class, 'edit']);
+    Route::name('reference_id.index')->get('/reference_id', [PageFourReferencesIdController::class, 'index']);
+    Route::name('reference_id.store_or_update')->post('/reference_id/store_or_update', [PageFourReferencesIdController::class, 'store_or_update']);
+    
 });
 
 

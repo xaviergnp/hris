@@ -77,4 +77,10 @@ class User extends Authenticatable
     public function other_information() : HasOne {
         return $this->hasOne(OtherInformation::class, 'user_id');
     }
+    public function page_four_questions() : HasOne {
+        return $this->hasOne(PageFourQuestion::class, 'user_id');
+    }
+    public function references_id() : HasOne {
+        return $this->hasOne(PageFourReferencesId::class, 'user_id');
+    }
 }
