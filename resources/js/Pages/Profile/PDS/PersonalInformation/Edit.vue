@@ -1,9 +1,6 @@
+
 <template>
   <ProfileLayout>
-    <template #header>
-      <h3>Personal Data Sheet</h3>
-    </template>
-
     <PDSLayout>
       <form @submit.prevent="create_update_personal_info">
         <div class="row">
@@ -466,8 +463,8 @@
           </div>
 
           <div class="col-12">
-            <div class="d-flex justify-content-end">
-              <div class="d-flex gap-2">
+            <div class="d-flex justify-content-between">
+              <div>
                 <div class="d-flex align-items-center">
                   <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
                 </div>
@@ -475,14 +472,20 @@
                   type="submit" :disabled="!form.isDirty && form.wasSuccessful"
                   class="btn btn-success"
                 >
-                  <Spinner :processing="form.processing" /> {{ !form.isDirty &&
-                    form.wasSuccessful ? 'Saved' : 'Save' }}
+                  <Spinner :processing="form.processing" /> 
+                  <span
+                    v-if="!form.isDirty &&
+                      form.wasSuccessful"
+                  ><i class="bi-file-earmark-check" /> Saved</span>
+                  <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
                 </button>
+              </div>
+              <div class="d-flex gap-2">
                 <Link
                   :href="route('profile.pds.family_background.edit')" type="button"
-                  :disabled="form.isDirty" class="btn btn-primary"
+                  :disabled="form.isDirty" class="btn btn-dark"
                 >
-                  Next
+                  <i v-if="!form.processing" class="bi-arrow-right" />
                 </Link>
               </div>
             </div>

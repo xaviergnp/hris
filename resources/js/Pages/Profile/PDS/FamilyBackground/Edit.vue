@@ -1,11 +1,7 @@
 <template>
   <ProfileLayout>
-    <template #header>
-      <h3>Personal Data Sheet</h3>
-    </template>
-
     <PDSLayout>
-      <div class="row">
+      <form class="row" @submit.prevent="create_update_family_background">
         <!-- SPOUSE -->
 
         <div class="col-12">
@@ -142,9 +138,8 @@
         <div class="col-12">
           <h5>Name of Children</h5>
           <div class="container border py-2 rounded">
-            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addChildren">
-              Add
-              Child
+            <button class="btn btn-success btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#addChildren">
+              Add Child
             </button>
             <table class="table table-bordered table-sm" style="text-transform: uppercase;">
               <thead>
@@ -174,34 +169,36 @@
         </div>
 
         <div class="col-12 mt-3">
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-between">
+            <button
+              type="submit" :disabled="!form.isDirty && form.wasSuccessful"
+              class="btn btn-success"
+            >
+              <Spinner :processing="form.processing" /> 
+              <span
+                v-if="!form.isDirty &&
+                  form.wasSuccessful"
+              ><i class="bi-file-earmark-check" /> Saved</span>
+              <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
+            </button>
             <div class="d-flex gap-2">
-              <div class="d-flex align-items-center">
-                <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
-              </div>
-              <button
-                type="button" :disabled="!form.isDirty && form.wasSuccessful"
-                class="btn btn-success" @click="create_update_family_background"
-              >
-                <Spinner :processing="form.processing" /> {{ !form.isDirty &&
-                  form.wasSuccessful ? 'Saved' : 'Save' }}
-              </button>
+              <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
               <Link
                 :href="route('profile.pds.personal_information.edit')" type="button" :disabled="form.isDirty"
-                class="btn btn-primary"
+                class="btn btn-dark"
               >
-                Previous
+                <i class="bi-arrow-left" />
               </Link>
               <Link
                 :href="route('profile.pds.educational_background.edit')" type="button" :disabled="form.isDirty"
-                class="btn btn-primary"
+                class="btn btn-dark"
               >
-                Next
+                <i class="bi-arrow-right" />
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </PDSLayout>
   </ProfileLayout>
   <Modal id="addChildren">

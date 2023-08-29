@@ -1,6 +1,5 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
     <PDSLayout>
       <Link :href="route('profile.pds.civil_service_eligibility.create')" class="btn btn-success">Add Eligibility</Link>
 
@@ -48,6 +47,20 @@
           </tbody>
         </table>
         <div v-if="!props.eligibilities.data.length" class="text-center">No records to display</div>
+      </div>
+      <div class="mb-3 d-flex justify-content-end gap-2">
+        <Link
+          :href="route('profile.pds.educational_background.edit')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-left" />
+        </Link>
+        <Link
+          :href="route('profile.pds.work_experience.index')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-right" />
+        </Link>
       </div>
       <Pagination
         v-if="props.eligibilities.data.length > 10"

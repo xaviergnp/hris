@@ -1,8 +1,5 @@
 <template>
   <ProfileLayout>
-    <template #header>
-      <h3>Personal Data Sheet</h3>
-    </template>
     <PDSLayout>
       <form @submit.prevent="createUpdateEducationalBackground">
         <div class="row">
@@ -360,7 +357,7 @@
 
 
         <div class="col-12 mt-3">
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-between">
             <div class="d-flex gap-2">
               <div class="d-flex align-items-center">
                 <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
@@ -369,20 +366,26 @@
                 type="submit" :disabled="!form.isDirty && form.wasSuccessful"
                 class="btn btn-success"
               >
-                <Spinner :processing="form.processing" /> {{ !form.isDirty &&
-                  form.wasSuccessful ? 'Saved' : 'Save' }}
+                <Spinner :processing="form.processing" /> 
+                <span
+                  v-if="!form.isDirty &&
+                    form.wasSuccessful"
+                ><i class="bi-file-earmark-check" /> Saved</span>
+                <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
               </button>
+            </div>
+            <div class="d-flex gap-2">
               <Link
-                :href="route('profile.pds.family_background.edit')" type="button" :disabled="!form.isDirty"
-                class="btn btn-primary"
+                :href="route('profile.pds.family_background.edit')" type="button" :disabled="form.isDirty"
+                class="btn btn-dark"
               >
-                Previous
+                <i class="bi-arrow-left" />
               </Link>
               <Link
-                :href="route('profile.pds.family_background.edit')" type="button" :disabled="!form.isDirty"
-                class="btn btn-primary"
+                :href="route('profile.pds.civil_service_eligibility.index')" type="button" :disabled="form.isDirty"
+                class="btn btn-dark"
               >
-                Next
+                <i class="bi-arrow-right" />
               </Link>
             </div>
           </div>

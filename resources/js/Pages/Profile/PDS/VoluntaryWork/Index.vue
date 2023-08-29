@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
+    
     <PDSLayout>
       <Link :href="route('profile.pds.voluntary_work.create')" class="btn btn-success">Add Voluntary Work</Link>
       <div class="table-responsive">
@@ -44,6 +44,20 @@
           </tbody>
         </table>
         <div v-if="!props.voluntary_works.data.length" class="text-center">No records to display</div>
+      </div>
+      <div class="mb-3 d-flex gap-2 justify-content-end">
+        <Link
+          :href="route('profile.pds.work_experience.index')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-left" />
+        </Link>
+        <Link
+          :href="route('profile.pds.learning_and_development.index')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-right" />
+        </Link>
       </div>
       <Pagination
         v-if="props.voluntary_works.data.length > 10"

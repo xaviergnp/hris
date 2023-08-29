@@ -1,6 +1,5 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
     <PDSLayout>
       <form @submit.prevent="addEligibility">
         <div class="row">

@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
+    
     <PDSLayout>
       <div class="table-responsive">
         <table class="table table-sm mt-3">
@@ -20,8 +20,23 @@
           </tbody>
         </table>
       </div>
-
-      <Link class="btn btn-success" :href="route('profile.pds.other_information.edit')">Edit</Link>
+      <div class="mb-3 d-flex gap-2 justify-content-between">
+        <Link class="btn btn-success" :href="route('profile.pds.other_information.edit')">Edit</Link>
+        <div class="d-flex gap-2">
+          <Link
+            :href="route('profile.pds.learning_and_development.index')" type="button"
+            class="btn btn-dark"
+          >
+            <i class="bi-arrow-left" />
+          </Link>
+          <Link
+            :href="route('profile.pds.page_four_questions.edit')" type="button"
+            class="btn btn-dark"
+          >
+            <i class="bi-arrow-right" />
+          </Link>
+        </div>
+      </div>
     </PDSLayout>
   </ProfileLayout>
 </template>

@@ -33,7 +33,7 @@ Route::prefix('job_application')
 ->middleware(['auth'])
 ->name('job_application.')
 ->group(function () {
-    Route::name('show')->get('/job_posting/{job_posting}/show', [JobApplicationController::class, 'show']);
+    Route::name('apply')->get('/job_posting/{job_posting}/apply', [JobApplicationController::class, 'apply']);
 });
 
 

@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
+    
     <PDSLayout>
       <Link :href="route('profile.pds.learning_and_development.create')" class="btn btn-success">Add</Link>
       <div class="table-responsive">
@@ -45,12 +45,26 @@
             </tr>
           </tbody>
         </table>
-        <!-- <div v-if="!props.learning_development.data.length" class="text-center">No records to display</div> -->
+        <div v-if="!props.learning_and_development.data.length" class="text-center">No records to display</div>
       </div>
-      <!-- <Pagination
-        v-if="props.learning_development.data.length > 10"
-        :links="props.learning_development.links"
-      /> -->
+      <div class="mb-3 d-flex gap-2 justify-content-end">
+        <Link
+          :href="route('profile.pds.voluntary_work.index')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-left" />
+        </Link>
+        <Link
+          :href="route('profile.pds.other_information.index')" type="button"
+          class="btn btn-dark"
+        >
+          <i class="bi-arrow-right" />
+        </Link>
+      </div>
+      <Pagination
+        v-if="props.learning_and_development.data.length > 10"
+        :links="props.learning_and_development.links"
+      />
     </PDSLayout>
   </ProfileLayout>
 </template>

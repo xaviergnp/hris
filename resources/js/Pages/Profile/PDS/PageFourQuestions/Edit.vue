@@ -338,24 +338,33 @@
           </li>
         </ul>
 
-
-        <div class="d-flex gap-2">
-          <div class="d-flex align-items-center">
-            <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
+        <div class="mb-3 d-flex gap-2 justify-content-between">
+          <div class="d-flex gap-2">
+            <div class="d-flex align-items-center">
+              <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
+            </div>
+            <button
+              type="submit" :disabled="!form.isDirty && form.wasSuccessful"
+              class="btn btn-success"
+            >
+              <Spinner :processing="form.processing" /> {{ !form.isDirty &&
+                form.wasSuccessful ? 'Saved' : 'Save' }}
+            </button>
           </div>
-          <button
-            type="submit" :disabled="!form.isDirty && form.wasSuccessful"
-            class="btn btn-success"
-          >
-            <Spinner :processing="form.processing" /> {{ !form.isDirty &&
-              form.wasSuccessful ? 'Saved' : 'Save' }}
-          </button>
-          <!-- <Link
-            :href="route('profile.pds.family_background.edit')" type="button"
-            :disabled="form.isDirty" class="btn btn-primary"
-          >
-            Next
-          </Link> -->
+          <div class="d-flex gap-2">
+            <Link
+              :href="route('profile.pds.other_information.index')" type="button"
+              class="btn btn-dark"
+            >
+              <i class="bi-arrow-left" />
+            </Link>
+            <Link
+              :href="route('profile.pds.reference_id.index')" type="button"
+              class="btn btn-dark"
+            >
+              <i class="bi-arrow-right" />
+            </Link>
+          </div>
         </div>
       </form>
     </PDSLayout>

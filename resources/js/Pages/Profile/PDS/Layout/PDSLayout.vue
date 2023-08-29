@@ -1,6 +1,6 @@
 <template>
   <div class="tabbable">
-    <ul class="nav nav-tabs" style="display: flex" role="tablist">
+    <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
         <Link
           preserve-state :href="route('profile.pds.personal_information.edit')" class="nav-link"

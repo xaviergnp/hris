@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <template #header><h3>Personal Data Sheet</h3></template>
+    
     <PDSLayout>
       <!-- <Link :href="route('profile.pds.voluntary_work.create')" class="btn btn-success">Add Voluntary Work</Link> -->
       <h5>References</h5>
@@ -95,7 +95,19 @@
             </tr>
           </tbody>
         </table>
-        <Link :href="route('profile.pds.reference_id.edit')" class="btn btn-success">Edit</Link>
+      </div>
+      <div class="mb-3 d-flex gap-2 justify-content-between">
+        <div class="d-flex gap-2">
+          <Link :href="route('profile.pds.reference_id.edit')" class="btn btn-success">Edit</Link>
+        </div>
+        <div class="d-flex gap-2">
+          <Link
+            :href="route('profile.pds.page_four_questions.edit')" type="button"
+            class="btn btn-dark"
+          >
+            <i class="bi-arrow-left" />
+          </Link>
+        </div>
       </div>
     </PDSLayout>
   </ProfileLayout>
