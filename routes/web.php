@@ -31,9 +31,11 @@ Route::prefix('recruitment')
 // Job Application
 Route::prefix('job_application')
 ->middleware(['auth'])
-->name('job_application.')
+->name('job_application.apply.')
 ->group(function () {
-    Route::name('apply')->get('/job_posting/{job_posting}/apply', [JobApplicationController::class, 'apply']);
+    Route::name('update_pds')->get('/job_posting/{job_posting}/apply/pds', [JobApplicationController::class, 'update_pds']);
+    Route::name('create_attachments')->get('/job_posting/{job_posting}/apply/attachments', [JobApplicationController::class, 'create_attachments']);
+    Route::name('review_application')->get('/job_posting/{job_posting}/apply/review_application', [JobApplicationController::class, 'review']);
 });
 
 

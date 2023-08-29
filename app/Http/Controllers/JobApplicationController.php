@@ -8,53 +8,24 @@ use Illuminate\Http\Request;
 class JobApplicationController extends Controller
 {
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update_pds(Request $request, JobPosting $job_posting)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request, JobPosting $job_posting)
-    {
-        return inertia('JobApplication/Show', [
+        return inertia('JobApplication/Application/UpdatePDS', [
             "job_posting" => $job_posting,
             "personal_information" => $request->user()->personal_information ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // show page for uploading attachments
+    public function create_attachments(Request $request, JobPosting $job_posting)
     {
-        //
+        return inertia('JobApplication/Application/Attachments', [
+            "job_posting" => $job_posting,
+            "personal_information" => $request->user()->personal_information ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function review(Request $request, JobPosting $job_posting)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return inertia('JobApplication/Application/ReviewApplication', [
+            "job_posting" => $job_posting,
+            "personal_information" => $request->user()->personal_information ]);
     }
 }

@@ -10,7 +10,7 @@
           <div class="d-flex gap-2">
             <Link
               :href="
-                route('job_application.apply', {
+                route('job_application.apply.update_pds', {
                   job_posting: props.job_posting.id
                 })
               "
