@@ -52,7 +52,7 @@ Route::prefix('profile/pds')
 
     // page four questions
     Route::name('page_four_questions.edit')->get('/page_four_questions/edit', [PageFourQuestionsController::class, 'edit']);
-    Route::name('page_four_questions.store_or_update')->post('/page_four_questions/{page_four_questions?}/store_or_update', [PageFourQuestionsController::class, 'store_or_update']);
+    Route::name('page_four_questions.store_or_update')->post('/page_four_questions/store_or_update', [PageFourQuestionsController::class, 'store_or_update']);
 
     // page four references and government issued id
     // other information

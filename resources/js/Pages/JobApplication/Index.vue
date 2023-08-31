@@ -48,7 +48,7 @@ const addDocument = (e) => {
 }
 
 const submitApplication = () => {
-  form.post(route('job_application.apply.store', {job_posting: props.job_posting.id}), {
+  form.post(route('job_application.store', {job_posting: props.job_posting.id}), {
     onSuccess: () => form.reset(),
   })
 }

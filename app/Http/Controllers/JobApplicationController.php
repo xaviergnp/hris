@@ -6,6 +6,7 @@ use App\Models\JobApplication;
 use App\Models\JobApplicationAttachment;
 use App\Models\JobPosting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JobApplicationController extends Controller
 {
@@ -33,8 +34,8 @@ class JobApplicationController extends Controller
             'documents' => 'required|array|min:1',
             'documents.*'=> 'required|mimes:png,jpg,jpeg,pdf|max:5000' 
         ], [
-            'documents.*.mimes' => 'Only image (.png, .jpg, .jpeg) and PDF (.pdf) format is accepted.',
-            'documents.required' => 'Please upload the required documents'
+            'documents.*.mimes' => 'Only image and pdf format is accepted.',
+            'documents.required' => 'Please upload the required documents.'
         ]);
 
         
@@ -55,6 +56,24 @@ class JobApplicationController extends Controller
             return back()->with('success', 'Application has been submitted.');
         }
 
+    }
+
+    public function index(Request $request) {
+        return inertia('Profile/JobApplications/Index', [
+            'job_applications' => $request->user()->job_application()->with(['document', 'job_posting'])->get()
+        ]);
+    }
+
+    public function destroy(JobApplication $job_application){
+        $documents = $job_application->document;
+
+        foreach($documents as $document){
+            Storage::disk('public')->delete($document->path);
+        }
+        $job_application->document()->delete();
+        $job_application->delete();
+
+        return back()->with('success', 'Application has been deleted.');
     }
 
 }

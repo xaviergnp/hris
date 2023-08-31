@@ -35,7 +35,7 @@
             $page.props.auth.user.name }}</a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item" :href="route('profile.index')">Profile</a>
+              <Link class="dropdown-item" :href="route('profile.index')">Profile</Link>
             </li>
             <li>
               <Link class="dropdown-item" :href="route('dashboard')">Main</Link>

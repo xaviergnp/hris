@@ -1,6 +1,5 @@
 <template>
   <ProfileLayout>
-    
     <PDSLayout>
       <!-- <Link :href="route('profile.pds.voluntary_work.create')" class="btn btn-success">Add Voluntary Work</Link> -->
       <h5>References</h5>
@@ -76,21 +75,21 @@
               <td>Government Issued ID:</td>
               <td>
                 {{ props.reference_id?.government_issued_id }}
-                <span v-if="!props.reference_id.government_issued_id">-</span>
+                <span v-if="!props.reference_id?.government_issued_id">-</span>
               </td>
             </tr>
             <tr>
               <td>ID/License/Passport No. </td>
               <td>
                 {{ props.reference_id?.id_license_passport_number }}
-                <span v-if="!props.reference_id.id_license_passport_number">-</span>
+                <span v-if="!props.reference_id?.id_license_passport_number">-</span>
               </td>
             </tr>
             <tr>
               <td>Date/Place of Issuance</td>
               <td>
                 {{ props.reference_id?.date_place_of_issuance }}
-                <span v-if="!props.reference_id.date_place_of_issuance">-</span>
+                <span v-if="!props.reference_id?.date_place_of_issuance">-</span>
               </td>
             </tr>
           </tbody>

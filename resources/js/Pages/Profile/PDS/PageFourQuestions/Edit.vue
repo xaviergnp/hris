@@ -443,7 +443,7 @@ if(props.questions){
 }
   
 const save = () => {
-  form.post(route('profile.pds.page_four_questions.store_or_update', {page_four_questions: props.questions.id}), {
+  form.post(route('profile.pds.page_four_questions.store_or_update', { page_four_questions: props.questions?.id }), {
     preserveScroll: true,
   })
 }
