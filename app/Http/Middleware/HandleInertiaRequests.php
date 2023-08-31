@@ -39,7 +39,8 @@ class HandleInertiaRequests extends Middleware
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),
                     'flash' => [
-                        'success' => fn () => $request->session()->get('success')
+                        'success' => fn () => $request->session()->get('success'),
+                        'warning' => fn () => $request->session()->get('warning')
                     ]
                 ]);
             },

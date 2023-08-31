@@ -26,6 +26,15 @@
           <li class="nav-item">
             <Link
               class="nav-link" :class="{
+                active: route().current('profile.pds.*')
+              }" :href="route('profile.pds.personal_information.edit')"
+            >
+              My Job Applications
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
+              class="nav-link" :class="{
                 active: route().current(
                   'profile.edit'
                 )

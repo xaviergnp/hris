@@ -140,7 +140,18 @@
         />
         <InputError :message="form.errors.closing_date" />
       </div>
-
+      <div class="mb-3">
+        <label for="documents" class="form-label">Requirements</label>
+        <textarea
+          id="documents"
+          v-model="form.documents"
+          type="text"
+          class="form-control"
+          rows="4"
+          style="white-space: pre-wrap"
+        />
+        <InputError :message="form.errors.documents" />
+      </div>
       <div class="mb-3">
         <button class="btn btn-primary" :disabled="form.processing">
           <div
@@ -177,6 +188,7 @@ const form = useForm({
   posting_date: null,
   closing_date: null,
   plantilla_item_no: null,
+  documents: null,
 })
 
 const create = () =>
@@ -194,6 +206,7 @@ const create = () =>
       form.posting_date = null
       form.closing_date = null
       form.plantilla_item_no = null
+      form.documents = null
     },
   })
 

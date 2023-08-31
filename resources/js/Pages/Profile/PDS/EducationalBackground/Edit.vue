@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <PDSLayout>
+    <PDSLayout :is-form-dirty="form.isDirty">
       <form @submit.prevent="createUpdateEducationalBackground">
         <div class="row">
           <!-- Elementary -->

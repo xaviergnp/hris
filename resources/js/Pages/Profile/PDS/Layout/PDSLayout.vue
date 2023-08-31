@@ -7,6 +7,7 @@
           :class="{ active: route().current('profile.pds.personal_information.edit') }"
         >
           Personal Information
+          <i v-if="props.isFormDirty && route().current('profile.pds.personal_information.edit')" class="bi-record-fill text-secondary" />
         </Link>
       </li>
 
@@ -17,6 +18,7 @@
           :class="{ active: route().current('profile.pds.family_background.edit') }"
         >
           Family Background
+          <i v-if="props.isFormDirty && route().current('profile.pds.family_background.edit')" class="bi-record-fill text-secondary" />
         </Link>
       </li>
 
@@ -27,6 +29,7 @@
           :class="{ active: route().current('profile.pds.educational_background.edit') }"
         >
           Educational Background
+          <i v-if="props.isFormDirty && route().current('profile.pds.educational_background.edit')" class="bi-record-fill text-secondary" />
         </Link>
       </li>
 
@@ -87,6 +90,7 @@
           :class="{ active: route().current('profile.pds.page_four_questions.*') }"
         >
           Questions
+          <i v-if="props.isFormDirty && route().current('profile.pds.page_four_questions.*')" class="bi-record-fill text-secondary" />
         </Link>
       </li>
 
@@ -97,6 +101,7 @@
           :class="{ active: route().current('profile.pds.reference_id.*') }"
         >
           References and ID
+          <i v-if="props.isFormDirty && route().current('profile.pds.reference_id.*')" class="bi-record-fill text-secondary" />
         </Link>
       </li>
     </ul>
@@ -109,4 +114,9 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
+
+const props = defineProps({
+  isFormDirty: Boolean,
+})
+
 </script>

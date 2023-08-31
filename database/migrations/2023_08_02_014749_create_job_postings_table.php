@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('competency')->nullable();
             $table->date('posting_date')->nullable();
             $table->date('closing_date')->nullable();
+            $table->text('documents')->nullable();
 
         });
     }

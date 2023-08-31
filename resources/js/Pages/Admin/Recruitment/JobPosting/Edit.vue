@@ -142,6 +142,19 @@
       </div>
 
       <div class="mb-3">
+        <label for="documents" class="form-label">Documents</label>
+        <textarea
+          id="documents"
+          v-model="form.documents"
+          type="text"
+          class="form-control"
+          rows="4"
+          style="white-space: pre-wrap"
+        />
+        <InputError :message="form.errors.documents" />
+      </div>
+
+      <div class="mb-3">
         <button class="btn btn-primary" :disabled="form.processing">
           <div
             v-if="form.processing"
@@ -182,6 +195,7 @@ const form = useForm({
   posting_date: props.job_posting.posting_date,
   closing_date: props.job_posting.closing_date,
   plantilla_item_no: props.job_posting.plantilla_item_no,
+  documents: props.job_posting.documents,
 })
 
 const update = () =>

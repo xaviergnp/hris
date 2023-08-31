@@ -31,7 +31,6 @@ class FamilyBackgroundController extends Controller
             'fathers_first_name' => "required|string|max:255|nullable",
             'fathers_name_extension' => "required|string|max:255|nullable",
             'fathers_middle_name' => "required|string|max:255|nullable",
-            'mothers_maiden_name' => "required|string|max:255|nullable",
             'mothers_surname' => "required|string|max:255|nullable",
             'mothers_first_name' => "required|string|max:255|nullable",
             'mothers_middle_name' => "required|string|max:255|nullable",

@@ -4,7 +4,7 @@
       <h3>Personal Data Sheet</h3>
     </template>
   
-    <PDSLayout>
+    <PDSLayout :is-form-dirty="form.isDirty">
       <form @submit.prevent="save">
         <!-- Some borders are removed -->
         <ul class="list-group list-group-flush">

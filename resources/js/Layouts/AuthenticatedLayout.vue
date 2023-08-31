@@ -10,9 +10,7 @@
       <!-- Page Content -->
       <main>
         <div class="container mt-3">
-          <div v-if="$page.props.ziggy.flash.success" class="alert alert-success">
-            {{ $page.props.ziggy.flash.success }}
-          </div>
+          <Notifications :flash="$page.props.ziggy.flash" />
           <slot />
         </div>
       </main>
@@ -22,5 +20,6 @@
 
 <script setup>
 import MainNavbar from '@/Components/MainNavbar.vue'
+import Notifications from '@/Components/Notifications.vue'
 
 </script>

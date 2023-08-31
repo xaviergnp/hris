@@ -48,6 +48,14 @@
           </dd>
           <dt>Eligibility</dt>
           <dd>{{ props.job_posting.eligibility }}</dd>
+          <dt>Competency</dt>
+          <dd style="white-space: pre-wrap">
+            {{ props.job_posting.competency }}
+          </dd>
+          <dt>Posting Date</dt>
+          <dd>{{ props.job_posting.posting_date }}</dd>
+          <dt>Closing Date</dt>
+          <dd>{{ props.job_posting.closing_date }}</dd>
         </dl>
       </div>
       <div class="col-12 col-md-6">
@@ -58,18 +66,8 @@
           <dd>{{ props.job_posting.training }}</dd>
           <dt>Work Experience</dt>
           <dd>{{ props.job_posting.work_experience }}</dd>
-        </dl>
-      </div>
-      <div class="col-12">
-        <dl>
-          <dt>Competency</dt>
-          <dd style="white-space: pre-wrap">
-            {{ props.job_posting.competency }}
-          </dd>
-          <dt>Posting Date</dt>
-          <dd>{{ props.job_posting.posting_date }}</dd>
-          <dt>Closing Date</dt>
-          <dd>{{ props.job_posting.closing_date }}</dd>
+          <dt>Documents</dt>
+          <dd class="text-pre-wrap">{{ props.job_posting.documents }}</dd>
         </dl>
       </div>
     </div>

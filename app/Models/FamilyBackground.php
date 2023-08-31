@@ -25,7 +25,6 @@ class FamilyBackground extends Model
         'fathers_first_name',
         'fathers_name_extension',
         'fathers_middle_name',
-        'mothers_maiden_name',
         'mothers_surname',
         'mothers_first_name',
         'mothers_middle_name',

@@ -25,6 +25,10 @@
     opacity: .6;
 }
 
+.text-pre-wrap {
+    white-space: pre-wrap
+}
+
 
 /* .tabbable .nav-tabs {
    overflow-x: auto;

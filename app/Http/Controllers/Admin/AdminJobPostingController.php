@@ -52,8 +52,9 @@ class AdminJobPostingController extends Controller
             "eligibility" => "required|string|max:255",
             "education" => "required|string|max:255",
             "training" => "required|string|max:255",
-            "work_experience" => "required|string|max:255",
-            "competency" => "required|string|max:255",
+            "work_experience" => "required|string|max:500",
+            "competency" => "required|string|max:500",
+            "documents" => "string|max:500|nullable",
             "posting_date" => "required|date",
             "closing_date" => "required|date"
         ]);
@@ -101,8 +102,9 @@ class AdminJobPostingController extends Controller
             "eligibility" => "required|string|max:255",
             "education" => "required|string|max:255",
             "training" => "required|string|max:255",
-            "work_experience" => "required|string|max:255",
-            "competency" => "required|string|max:255",
+            "work_experience" => "required|string|max:500",
+            "competency" => "required|string|max:500",
+            "documents" => "string|max:500|nullable",
             "posting_date" => "required|date",
             "closing_date" => "required|date"
         ], $messages)->validate();

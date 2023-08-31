@@ -1,7 +1,7 @@
 
 <template>
   <ProfileLayout>
-    <PDSLayout>
+    <PDSLayout :is-form-dirty="form.isDirty">
       <form @submit.prevent="create_update_personal_info">
         <div class="row">
           <!-- PERSONAL INFORMATION -->
@@ -465,9 +465,6 @@
           <div class="col-12">
             <div class="d-flex justify-content-between">
               <div>
-                <div class="d-flex align-items-center">
-                  <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
-                </div>
                 <button
                   type="submit" :disabled="!form.isDirty && form.wasSuccessful"
                   class="btn btn-success"
@@ -479,10 +476,11 @@
                   ><i class="bi-file-earmark-check" /> Saved</span>
                   <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
                 </button>
+                <b v-if="form.isDirty" class="text-danger form-status ms-2">Not Saved</b>
               </div>
               <div class="d-flex gap-2">
                 <Link
-                  :href="route('profile.pds.family_background.edit')" type="button"
+                  :href="route('profile.pds.family_background.edit')" as="button"
                   :disabled="form.isDirty" class="btn btn-dark"
                 >
                   <i v-if="!form.processing" class="bi-arrow-right" />

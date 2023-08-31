@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JobPosting extends Model
@@ -13,10 +14,14 @@ class JobPosting extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['by_user_id', 'place_of_assignment', 'position', 'plantilla_item_no', 'salary_grade', 'monthly_salary', 'eligibility', 'education', 'training', 'work_experience', 'competency', 'posting_date', 'closing_date'];
+    protected $fillable = ['by_user_id', 'place_of_assignment', 'position', 'plantilla_item_no', 'salary_grade', 'monthly_salary', 'eligibility', 'education', 'training', 'work_experience', 'competency', 'posting_date', 'closing_date', 'documents'];
 
     public function encoder() : BelongsTo {
         return $this->belongsTo(User::class);
+    }
+
+    public function job_application() : HasMany {
+        return $this->hasMany(JobApplication::class, 'job_posting_id');
     }
 
     public function scopeFilter(Builder $query, array $filters) : Builder {

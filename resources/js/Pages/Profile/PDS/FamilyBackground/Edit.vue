@@ -1,6 +1,6 @@
 <template>
   <ProfileLayout>
-    <PDSLayout>
+    <PDSLayout :is-form-dirty="form.isDirty">
       <form class="row" @submit.prevent="create_update_family_background">
         <!-- SPOUSE -->
 
@@ -108,13 +108,6 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="mb-3">
-            <label class="form-label">Maiden Name</label>
-            <input v-model="form.mothers_maiden_name" type="text" class="form-control form-control-sm" />
-            <InputError :message="form.errors.mothers_maiden_name" />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="mb-3">
             <label class="form-label">Surname</label>
             <input v-model="form.mothers_surname" type="text" class="form-control form-control-sm" />
             <InputError :message="form.errors.mothers_surname" />
@@ -138,7 +131,7 @@
         <div class="col-12">
           <h5>Name of Children</h5>
           <div class="container border py-2 rounded">
-            <button class="btn btn-success btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#addChildren">
+            <button type="button" class="btn btn-success btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#addChildren">
               Add Child
             </button>
             <table class="table table-bordered table-sm" style="text-transform: uppercase;">
@@ -170,19 +163,21 @@
 
         <div class="col-12 mt-3">
           <div class="d-flex justify-content-between">
-            <button
-              type="submit" :disabled="!form.isDirty && form.wasSuccessful"
-              class="btn btn-success"
-            >
-              <Spinner :processing="form.processing" /> 
-              <span
-                v-if="!form.isDirty &&
-                  form.wasSuccessful"
-              ><i class="bi-file-earmark-check" /> Saved</span>
-              <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
-            </button>
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 align-items-center">
+              <button
+                type="submit" :disabled="!form.isDirty && form.wasSuccessful"
+                class="btn btn-success"
+              >
+                <Spinner :processing="form.processing" /> 
+                <span
+                  v-if="!form.isDirty &&
+                    form.wasSuccessful"
+                ><i class="bi-file-earmark-check" /> Saved</span>
+                <span v-else><i v-if="!form.processing" class="bi-file-earmark-arrow-up" /> Save</span>
+              </button>
               <b v-if="form.isDirty" class="text-danger form-status">Not Saved</b>
+            </div>
+            <div class="d-flex gap-2">
               <Link
                 :href="route('profile.pds.personal_information.edit')" type="button" :disabled="form.isDirty"
                 class="btn btn-dark"
@@ -261,7 +256,6 @@ if (props.family_background) {
     fathers_first_name: props.family_background.fathers_first_name,
     fathers_name_extension: props.family_background.fathers_name_extension,
     fathers_middle_name: props.family_background.fathers_middle_name,
-    mothers_maiden_name: props.family_background.mothers_maiden_name,
     mothers_surname: props.family_background.mothers_surname,
     mothers_first_name: props.family_background.mothers_first_name,
     mothers_middle_name: props.family_background.mothers_middle_name,
@@ -280,7 +274,6 @@ if (props.family_background) {
     fathers_first_name: null,
     fathers_name_extension: null,
     fathers_middle_name: null,
-    mothers_maiden_name: null,
     mothers_surname: null,
     mothers_first_name: null,
     mothers_middle_name: null,
