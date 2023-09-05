@@ -35,6 +35,15 @@
           <li class="nav-item">
             <Link
               class="nav-link" :class="{
+                active: route().current('daily_time_record.index')
+              }" :href="route('daily_time_record.index')"
+            >
+              Daily Time Record
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
+              class="nav-link" :class="{
                 active: route().current(
                   'profile.edit'
                 )

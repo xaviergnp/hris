@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DailyTimeRecordController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+    Route::resource('daily_time_record', DailyTimeRecordController::class);
 });
 
 require __DIR__.'/auth.php';

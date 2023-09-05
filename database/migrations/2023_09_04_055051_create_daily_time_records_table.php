@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('daily_time_record', function (Blueprint $table) {
             $table->id();
+
             $table->integer('user_id');
-            $table->string('date_time');
+            $table->timestamp('date_time');
         });
     }
 
