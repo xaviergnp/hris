@@ -19,7 +19,7 @@
       
 
       <!-- Daily Time Record table -->
-      <table class="w-100 text-center" :style="{opacity: filter.processing ? 0.2 : 1}">
+      <table class="w-100 text-center dtr-table" :style="{opacity: filter.processing ? 0.2 : 1}">
         <thead>
           <tr>
             <td rowspan="2">#</td>
@@ -41,19 +41,19 @@
             <td>{{ record.date }}</td>
             <td>{{ record.day }}</td>
             <td>
-              {{ record.inAM }}
+              <b>{{ record.inAM }}</b>
             </td>
             <td>
-              {{ record.outAM }}
+              <b>{{ record.outAM }}</b>
             </td>
             <td>
-              {{ record.inPM }}
+              <b>{{ record.inPM }}</b>
             </td>
             <td>
-              {{ record.outPM }}
+              <b>{{ record.outPM }}</b>
             </td>
             <td>
-              {{ record.totalHours }}
+              <b>{{ record.totalHours }}</b>
             </td>
           </tr>
         </tbody>
@@ -84,14 +84,14 @@ const onChangeMonth = debounce(() => {
     preserveState: true,
     preserveScroll: true,
   })
-}, 1000)
+}, 1500)
 
 
 </script>
 
 
 <style>
-table, th, td {
+.dtr-table, .dtr-table th, .dtr-table td {
   border: 1px solid black;
   border-collapse: collapse;
 }</style>

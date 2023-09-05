@@ -39,13 +39,13 @@ class DailyTimeRecord extends Model
 
     public static function getRecordByMonth($user_id, $filter = []){
         if(!count($filter)){
-            $filter['month'] = date('Y-m');
+            $filter['month'] = date('Y-m'); //set to current month
         }
         
-        $yearMonth = date('Y-m', strtotime($filter['month']));
+        $yearMonth = date('Y-m', strtotime($filter['month'])); // 2023-09
 
         // Get the number of days in the given month
-        $daysInMonth = date('t', strtotime($yearMonth . "-01"));
+        $daysInMonth = date('t', strtotime($yearMonth . "-01")); // day count
 
         // Initialize the daily time record array
         $dailyTimeRecord = [];
@@ -61,7 +61,7 @@ class DailyTimeRecord extends Model
             ->get();
 
             // dd($dateTimeRecordToday);
-
+            // initialize time in/out in the morning and afternoon
             $inAM = null;
             $outAM = null;
             $inPM = null;
@@ -99,30 +99,30 @@ class DailyTimeRecord extends Model
             $totalPM = null;
 
             if($inAM && $outAM){
-                $logTimeInAm = Carbon::parse($inAM->toTimeString());
-                $logTimeOutAm = Carbon::parse($outAM->toTimeString());
+                $logTimeInAm = Carbon::parse($inAM->format('H:i'));
+                $logTimeOutAm = Carbon::parse($outAM->format('H:i'));
 
                 $time_in_earlier_7 = $logTimeInAm->lessThan(Carbon::parse('7:00:00'));
                 $time_in_pass_7 = $logTimeInAm->greaterThan(Carbon::parse('7:00:00'));
                 $time_out_earlier_12 = $logTimeOutAm->lessThan(Carbon::parse('12:00:00'));
-                $time_out_pass_12 = $logTimeOutAm->greaterThan(Carbon::parse('12:00:00'));
+                $time_out_pass_12 = $logTimeOutAm->greaterThanOrEqualTo(Carbon::parse('12:00:00'));
 
-                $exact12 = Carbon::parse('12:01');
+                $exact12 = Carbon::parse('12:00');
 
                 if($time_in_earlier_7 && $time_out_earlier_12) {
-                    $totalAM = $outAM->diffInSeconds(Carbon::parse('7:00'));
+                    $totalAM = $logTimeOutAm->diffInSeconds(Carbon::parse('7:00'));
                 }else if($time_in_earlier_7 && $time_out_pass_12){
-                    $totalAM = Carbon::parse('4:00');
+                    $totalAM = $exact12->diffInSeconds(Carbon::parse('7:00'));
                 }else if($time_in_pass_7 && $time_out_earlier_12){
-                    $totalAM = $outAM->diffInSeconds($inAM);
+                    $totalAM = $logTimeOutAm->diffInSeconds($logTimeInAm);
                 }else if($time_in_pass_7 && $time_out_pass_12){
-                    $totalAM = $exact12->diffInSeconds($inAM);
+                    $totalAM = $exact12->diffInSeconds($logTimeInAm);
                 }
             }
 
             if($inPM && $outPM){
-                $logTimeInPm = Carbon::parse($inPM->toTimeString());
-                $logTimeOutPm = Carbon::parse($outPM->toTimeString());
+                $logTimeInPm = Carbon::parse($inPM->format('H:i'));
+                $logTimeOutPm = Carbon::parse($outPM->format('H:i'));
 
                 $time_in_earlier_13 = $logTimeInPm->lessThan(Carbon::parse('13:00:00'));
                 $time_in_pass_13 = $logTimeInPm->greaterThan(Carbon::parse('13:00:00'));
@@ -130,7 +130,7 @@ class DailyTimeRecord extends Model
                 $time_out_pass_19 = $logTimeOutPm->greaterThan(Carbon::parse('19:00:00'));
                 // $time_out_pass_12 = $logTimeOutPm->greaterThan(Carbon::parse('12:00:00'));
 
-                $exact19 = Carbon::parse('19:01');
+                $exact19 = Carbon::parse('19:00');
 
                 // dd($time_in_earlier_13 && $time_out_earlier_19);
 
@@ -151,30 +151,30 @@ class DailyTimeRecord extends Model
 
             if($totalAM || $totalPM){
                 if($totalAM) {
-                    $total = gmdate('H:i', $totalAM);
+                    $total = gmdate('H:i:s', $totalAM);
                 }
 
                 if($totalPM){
-                    $total = gmdate('H:i', $totalPM);
+                    $total = gmdate('H:i:s', $totalPM);
                 }
 
                 if($totalAM && $totalPM){
-                    $total = gmdate('H:i', $totalAM + $totalPM);
+                    $total = gmdate('H:i:s', $totalAM + $totalPM);
                 }
             }
 
 
             
 
-            $dayOfWeek = date('l', strtotime($yearMonth . '-' . $date));
+            $dayOfWeek = date('D', strtotime($yearMonth . '-' . $date));
             // Create a daily record for the current day
             $record = [
                 'date' => $date,
                 'day' => $dayOfWeek,
-                'inAM' => $inAM ? $inAM->format('h:i A') : null,  // You can initialize these with default values
-                'outAM' => $outAM ? $outAM->format('h:i A') : null,
-                'inPM' => $inPM ? $inPM->format('h:i A') : null,
-                'outPM' => $outPM ? $outPM->format('h:i A') : null,
+                'inAM' => $inAM ? $inAM->format('h:i:s A') : null,  
+                'outAM' => $outAM ? $outAM->format('h:i:s A') : null,
+                'inPM' => $inPM ? $inPM->format('h:i:s A') : null,
+                'outPM' => $outPM ? $outPM->format('h:i:s A') : null,
                 'totalHours' => $total,
             ];
 
