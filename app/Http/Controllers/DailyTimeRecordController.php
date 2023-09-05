@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DailyTimeRecord;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +14,11 @@ class DailyTimeRecordController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = $request->only(['month']);
+            
         return inertia('Profile/DailyTimeRecord/Index', [
-            'records' => DB::select('select * from daily_time_record where user_id = ? and month(date_time) = month(now()) order by date_time desc', [$request->user()->dtr_user_id])
+            'filters' => $filters,
+            'record_sample' => DailyTimeRecord::getRecordByMonth($request->user()->dtr_user_id, $filters)
         ]);
     }
 

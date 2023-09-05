@@ -1,16 +1,14 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
-@import 'vue-wysiwyg/dist/vueWysiwyg.css';
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
 
 .center-element {
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .banner-logo {

@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
             }
     
             $zk->disconnect();
-        })->everyFiveMinutes();
+        })->everyFifteenMinutes();
     }
 
     /**
