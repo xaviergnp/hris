@@ -24,8 +24,8 @@ const submit = () => {
   <AuthenticatedLayout>
     <Head title="Register" />
 
-    <div class="container center-element">
-      <div class="card shadow w-25">
+    <div class="container">
+      <div class="card shadow center-element">
         <div class="card-body">
           <form @submit.prevent="submit">
             <div>

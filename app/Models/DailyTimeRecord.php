@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class DailyTimeRecord extends Model
@@ -171,10 +170,10 @@ class DailyTimeRecord extends Model
             $record = [
                 'date' => $date,
                 'day' => $dayOfWeek,
-                'inAM' => $inAM ? $inAM->format('h:i:s A') : null,  
-                'outAM' => $outAM ? $outAM->format('h:i:s A') : null,
-                'inPM' => $inPM ? $inPM->format('h:i:s A') : null,
-                'outPM' => $outPM ? $outPM->format('h:i:s A') : null,
+                'inAM' => $inAM ? $inAM->format('h:i:00 A') : null,  
+                'outAM' => $outAM ? $outAM->format('h:i:00 A') : null,
+                'inPM' => $inPM ? $inPM->format('h:i:00 A') : null,
+                'outPM' => $outPM ? $outPM->format('h:i:00 A') : null,
                 'totalHours' => $total,
             ];
 

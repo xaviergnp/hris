@@ -29,6 +29,17 @@
               Roles and Permissions
             </Link>
           </div>
+          <div class="nav-item dropdown">
+            <Link
+              class="nav-link" :href="route('admin.daily_time_record.index')" :class="{
+                active: route().current(
+                  'admin.daily_time_record.*'
+                )
+              }"
+            >
+              Daily Time Record
+            </Link>
+          </div>
         </ul>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{

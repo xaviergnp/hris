@@ -33,8 +33,8 @@ const submit = () => {
   <AuthenticatedLayout>
     <Head title="Log in" />
 
-    <div class="container center-element">
-      <div class="card shadow w-25">
+    <div class="container">
+      <div class="card shadow center-element">
         <div class="card-body">
           <div
             v-if="status"

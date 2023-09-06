@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
@@ -25,18 +26,31 @@ class Kernel extends ConsoleKernel
     
             $dtrs = $zk->getAttendance();
 
-            DB::table('daily_time_record')->truncate();
 
             foreach($dtrs as $dtr){
+                $dtr_timestamp = Carbon::parse($dtr['timestamp']);
+                $latestRecord = DB::table('daily_time_record')->max('date_time');
 
-                DB::table('daily_time_record')->insert([
-                    'user_id' => $dtr['id'],
-                    'date_time' => $dtr['timestamp'],
-                ]);
+                if($latestRecord){
+                    if($dtr_timestamp->greaterThan(Carbon::parse($latestRecord))){
+                        DB::table('daily_time_record')->insert([
+                            'user_id' => $dtr['id'],
+                            'date_time' => $dtr['timestamp'],
+                        ]);
+                    }
+                }else{
+                    DB::table('daily_time_record')->insert([
+                        'user_id' => $dtr['id'],
+                        'date_time' => $dtr['timestamp'],
+                    ]);
+                }
             }
     
             $zk->disconnect();
-        })->everyFifteenMinutes();
+        })
+        // ->everyMinute()
+        ->everyFifteenMinutes()
+        ;
     }
 
     /**

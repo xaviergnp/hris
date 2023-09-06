@@ -3,7 +3,8 @@
 
  // Admin Page Routes
 
- use App\Http\Controllers\Admin\AdminJobPostingController;
+use App\Http\Controllers\Admin\AdminDailyTimeRecordController;
+use App\Http\Controllers\Admin\AdminJobPostingController;
  use App\Http\Controllers\AdminController;
  use App\Http\Controllers\PermissionController;
  use App\Http\Controllers\RoleController;
@@ -33,6 +34,8 @@
      ->group(function () {
          Route::resource('job_posting', AdminJobPostingController::class);
      });
+
+    Route::get('daily_time_record', [AdminDailyTimeRecordController::class, 'index'])->name('daily_time_record.index');
  });
 
 ?>
