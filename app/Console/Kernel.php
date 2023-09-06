@@ -27,9 +27,10 @@ class Kernel extends ConsoleKernel
             $dtrs = $zk->getAttendance();
 
 
+            $latestRecord = DB::table('daily_time_record')->max('date_time');
+            
             foreach($dtrs as $dtr){
                 $dtr_timestamp = Carbon::parse($dtr['timestamp']);
-                $latestRecord = DB::table('daily_time_record')->max('date_time');
 
                 if($latestRecord){
                     if($dtr_timestamp->greaterThan(Carbon::parse($latestRecord))){
@@ -48,8 +49,8 @@ class Kernel extends ConsoleKernel
     
             $zk->disconnect();
         })
-        // ->everyMinute()
-        ->everyFifteenMinutes()
+        ->everyMinute()
+        // ->everyFifteenMinutes()
         ;
     }
 
