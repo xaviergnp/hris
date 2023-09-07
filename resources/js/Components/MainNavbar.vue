@@ -22,6 +22,17 @@
               Job Vacancies
             </Link>
           </li>
+          <li v-if="user" class="nav-item">
+            <Link
+              class="nav-link" :class="{
+                active: route().current(
+                  'daily_time_record.*'
+                )
+              }" :href="route('daily_time_record.index')"
+            >
+              Daily Time Record
+            </Link>
+          </li>
           <!-- <div class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             :class="{ active: route().current('recruitment.*') }">Job Vacancies
@@ -72,4 +83,5 @@ const admin = computed(() => {
     .includes('Access Admin')
   return isAdmin
 })
+
 </script>

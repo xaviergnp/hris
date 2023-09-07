@@ -8,7 +8,15 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 
 
-        $permissions = ['Access Admin', 'Manage Roles and Permissions', 'Manage Job Vacancies'];
+        $permissions = [
+            'Access Admin', 
+            'Manage Roles and Permissions', 
+            'Manage Job Vacancies', 
+            'Access Job Vacancies', 
+            'Access DTR',
+            'Manage Employees',
+            'Apply Job'
+        ];
         $roles = ['superadmin', 'admin', 'hr', 'user', 'employee'];
 
         foreach($roles as $role){
@@ -16,9 +24,9 @@ use Illuminate\Auth\Events\Registered;
         }
 
         $user = User::create([
-            'name' => 'Test Account',
-            'email' => 'test@mail.dev',
-            'password' => Hash::make('12345678'),
+            'name' => 'superadmin',
+            'username' => 'nedaict',
+            'password' => Hash::make('lanxNEDA'),
         ]);
 
         $user->assignRole('superadmin');

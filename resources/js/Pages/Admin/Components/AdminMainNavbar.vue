@@ -9,6 +9,17 @@
         <ul class="navbar-nav me-auto">
           <div class="nav-item">
             <Link
+              class="nav-link" :href="route('admin.employees.index')" :class="{
+                active: route().current(
+                  'admin.employees.*'
+                )
+              }"
+            >
+              Employees
+            </Link>
+          </div>
+          <div class="nav-item">
+            <Link
               class="nav-link" :href="route('admin.recruitment.job_posting.index')" :class="{
                 active: route().current(
                   'admin.recruitment.job_posting.*'

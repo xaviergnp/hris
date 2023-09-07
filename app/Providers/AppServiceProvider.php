@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        URL::forceRootUrl(Config::get('app.url'));
+        if(!Config::get('app.debug')){
+            URL::forceRootUrl(Config::get('app.url'));
+        }
     }
 }

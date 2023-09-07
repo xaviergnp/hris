@@ -1,5 +1,5 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue'
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
@@ -10,18 +10,19 @@ const form = useForm({
   name: '',
   username: '',
   password: '',
+  dtr_user_id: '',
   password_confirmation: '',
 })
 
 const submit = () => {
-  form.post(route('register'), {
+  form.post(route('admin.employees.store'), {
     onFinish: () => form.reset('password', 'password_confirmation'),
   })
 }
 </script>
 
 <template>
-  <AuthenticatedLayout>
+  <AdminLayout>
     <Head title="Register" />
 
     <div class="container">
@@ -62,6 +63,24 @@ const submit = () => {
               <InputError
                 class="mt-2"
                 :message="form.errors.username"
+              />
+            </div>
+
+            <div class="mt-4">
+              <InputLabel for="dtr_user_id" value="DTR User ID" />
+
+              <TextInput
+                id="dtr_user_id"
+                v-model="form.dtr_user_id"
+                type="number"
+                class="mt-1 block w-full"
+                required
+                autocomplete="dtr_user_id"
+              />
+
+              <InputError
+                class="mt-2"
+                :message="form.errors.dtr_user_id"
               />
             </div>
 
@@ -107,13 +126,6 @@ const submit = () => {
             <div
               class="d-flex align-items-center justify-content-end mt-4 gap-3"
             >
-              <Link
-                :href="route('login')"
-                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Already registered?
-              </Link>
-
               <PrimaryButton
                 class="ml-4"
                 :class="{ 'opacity-25': form.processing }"
@@ -126,5 +138,5 @@ const submit = () => {
         </div>
       </div>
     </div>
-  </AuthenticatedLayout>
+  </AdminLayout>
 </template>

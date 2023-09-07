@@ -9,6 +9,7 @@
           <h3>{{ props.job_posting.position }}</h3>
           <div class="d-flex gap-2">
             <Link
+              v-if="permissions.includes('Apply Job')"
               :href="
                 route('recruitment.job_posting.apply', {
                   job_posting: props.job_posting.id
@@ -66,7 +67,7 @@
 import BreadCrumbs from '@/Components/BreadCrumbs.vue'
 import Salary from '@/Components/Salary.vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, usePage } from '@inertiajs/vue3'
 import { computed } from 'vue'
 const props = defineProps({
   job_posting: Object,
@@ -85,4 +86,7 @@ const crumbs = computed(() => [
     label: props.job_posting.plantilla_item_no,
   },
 ])
+
+const permissions = usePage()
+  .props.auth.permissions?.map((perm) => perm.name)
 </script>
