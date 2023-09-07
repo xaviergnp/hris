@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class EmployeeController extends Controller
@@ -23,11 +24,17 @@ class EmployeeController extends Controller
     //
     public function store(Request $request)
     {
+        Validator::extend('valid_username', function($attr, $value){
+            return preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $value);
+        });
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|regex:/\w*$/|max:255|unique:'.User::class,
-            'dtr_user_id' => 'required|integer',
+            'username' => 'required|string|valid_username|max:255|unique:'.User::class,
+            'dtr_user_id' => 'required|integer|unique:users,dtr_user_id',
             'password' => ['required', 'confirmed', Password::defaults()],
+        ], [
+            'username.valid_username' => 'Invalid Username.'
         ]);
 
         $user = User::create([
@@ -39,6 +46,6 @@ class EmployeeController extends Controller
 
         $user->assignRole('employee');
 
-        return back()->with('success', 'Account has been registered.');
+        return back()->with('success', "$request->username has been registered." );
     }
 }

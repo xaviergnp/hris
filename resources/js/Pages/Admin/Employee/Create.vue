@@ -17,6 +17,9 @@ const form = useForm({
 const submit = () => {
   form.post(route('admin.employees.store'), {
     onFinish: () => form.reset('password', 'password_confirmation'),
+    onSuccess: () => {
+      form.reset()
+    },
   })
 }
 </script>
