@@ -2,8 +2,8 @@
   <Head title="Profile" />
   <AuthenticatedLayout>
     <div class="row">
-      <div class="col-2">
-        <ul class="nav flex-column nav-pills">
+      <div class="col-12 col-lg-2">
+        <ul class="nav flex-row flex-lg-column nav-pills">
           <li class="nav-item">
             <Link
               class="nav-link" :class="{
@@ -54,7 +54,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-10">
+      <div class="col-12 col-md-10">
         <slot name="header" />
         <slot />
       </div>
