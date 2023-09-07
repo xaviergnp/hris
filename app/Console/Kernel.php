@@ -48,10 +48,7 @@ class Kernel extends ConsoleKernel
             }
     
             $zk->disconnect();
-        })
-        ->everyMinute()
-        // ->everyFifteenMinutes()
-        ;
+        })->everyFifteenMinutes()->weekdays()->timezone('Asia/Manila')->between('07:00', '20:00');
     }
 
     /**

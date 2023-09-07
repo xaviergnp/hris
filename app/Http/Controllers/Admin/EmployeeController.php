@@ -14,7 +14,9 @@ class EmployeeController extends Controller
     //
     public function index()
     {
-        return inertia('Admin/Employee/Index');
+        return inertia('Admin/Employee/Index', [
+            'employees' => User::paginate(10)->withQueryString()
+        ]);
     }
     //
     public function create()
