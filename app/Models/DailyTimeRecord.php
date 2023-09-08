@@ -67,7 +67,7 @@ class DailyTimeRecord extends Model
             $outPM = null;
             
             $logTimeBetween7to11 = array();
-            $logTimeBetween12to3 = array();
+            $logTimeBetween11to3 = array();
             $logTimeBetween3onwards = array();
 
             if(count($dateTimeRecordToday)){
@@ -80,18 +80,18 @@ class DailyTimeRecord extends Model
                     }
     
                     if($logTime->greaterThan(Carbon::parse('11:00:00')) && $logTime->lessThan(Carbon::parse('15:00:00'))){
-                        array_push($logTimeBetween12to3, $time);
+                        array_push($logTimeBetween11to3, $time);
                     }
 
-                    if($logTime->greaterThan(Carbon::parse('15:01:00'))){
+                    if($logTime->greaterThan(Carbon::parse('15:00:00'))){
                         array_push($logTimeBetween3onwards, $time);
                     }
                 }
             }
 
             $inAM = $logTimeBetween7to11[0] ?? null;
-            $outAM = $logTimeBetween12to3[0] ?? null;
-            $inPM = $logTimeBetween12to3[count($logTimeBetween12to3) - 1] ?? null;
+            $outAM = $logTimeBetween11to3[0] ?? null;
+            $inPM = $logTimeBetween11to3[1] ?? null;
             $outPM = $logTimeBetween3onwards[0] ?? null;
             $total = null;
             $totalAM = null;
