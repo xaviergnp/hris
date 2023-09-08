@@ -35,15 +35,17 @@
 
   <div id="sideNav" class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" tabindex="-1" aria-labelledby="Enable both scrolling & backdrop">
     <div class="offcanvas-header text-light">
-      <div class="offcanvas-title "><h3>Menu</h3></div>
+      <div class="offcanvas-title d-flex align-center gap-2">
+        <img :src="nedalogo" alt="" class="img-fluid side-nav-logo" />
+        <b>NRO2 Human Resource Information System</b>
+      </div>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
     </div>
     <ul class="nav text-light flex-column gap-2 p-4 bg-primary side-nav" style="z-index: 1;">
-      <li class="nav-item  d-flex align-center gap-2">
-        <img :src="nedalogo" alt="" class="img-fluid side-nav-logo" />
-        <b>NRO2 Human Resource Information System</b>
+      <li class="nav-item">
+        <b>Menu</b>
       </li>
-      <li class="nav-item mt-4">
+      <li class="nav-item">
         <Link
           class="nav-link text-info" :class="{
             active: route().current(
