@@ -2,9 +2,10 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 .center-element {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  transform: translate(50%, 50%);
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
 }
 
 .banner-logo {

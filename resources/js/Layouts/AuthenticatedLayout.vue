@@ -7,7 +7,7 @@
         <SideNav />
       </div>
       <div class="col">
-        <div class="container" style="position:relative;">
+        <div class="container">
           <br />
           <br />
           <br />

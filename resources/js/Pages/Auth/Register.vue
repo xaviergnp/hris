@@ -25,7 +25,7 @@ const submit = () => {
     <Head title="Register" />
 
     <div class="container">
-      <div class="card shadow center-element">
+      <div class="card shadow">
         <div class="card-body">
           <form @submit.prevent="submit">
             <div>
