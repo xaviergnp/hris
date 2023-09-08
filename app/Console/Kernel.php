@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
             }
     
             $zk->disconnect();
-        })->cron('0-59/15 7-10,17-20 * * 1-5');
+        })->cron('0-59/15 7-10,12-14,17-20 * * 1-5');
     }
 
     /**
