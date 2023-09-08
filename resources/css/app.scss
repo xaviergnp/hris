@@ -1,0 +1,81 @@
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+$theme-colors: (
+  "primary": $blue-700,
+  "danger": $red-600,
+  "info": $blue-200,
+  "dark": $blue-900,
+  "light": $white,
+  "warning": $orange-500,
+  "secondary": $gray-700,
+);
+
+.center-element {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    transform: translate(50%, 50%);
+}
+
+.banner-logo {
+    width: 120px;
+}
+
+#pds input[type='text'] {
+    text-transform: uppercase;
+}
+
+#pds .form-status{
+    opacity: .6;
+}
+
+.text-pre-wrap {
+    white-space: pre-wrap
+}
+
+.side-nav{
+    position: fixed;
+    height: 100vh;
+    z-index: 1;
+    width: 300px;
+
+
+    .nav-link {
+        transition: background-color 0.2s;
+        &:hover{
+            background-color: $blue-800;
+        }
+    }
+
+    .nav-item .active{
+        background-color: $blue-800;
+    }
+
+    
+}
+
+.side-nav-logo{
+    width: 50px;
+}
+
+@media only screen and (max-width: 1700px)  {
+    .side-nav-col{
+        display: none;
+    }
+
+    .side-nav-toggler{
+        display: inline-block !important;
+    }
+
+    .side-nav{
+        position: relative;
+        width: 100%;
+    }
+}
+
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "../../node_modules/bootstrap/scss/bootstrap";

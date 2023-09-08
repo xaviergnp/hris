@@ -1,12 +1,10 @@
 <template>
-  <ProfileLayout>
-    <template #header>
-      <h3>DTR</h3>
-    </template>
+  <AuthenticatedLayout>
+    <h3>Daily Time Record</h3>
     <div class="mb-3">
       <input id="" v-model="filter.month" type="month" name="" class="form-control" @change="onChangeMonth" />
     </div>
-    <div class="table-responsive" :style="{position: 'relative'}">
+    <div class="table-responsive container" :style="{position: 'relative'}">
       <div v-if="filter.processing" class="center-element">
         <div
           class="spinner-border text-primary spinner-border-lg"
@@ -15,8 +13,6 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      
-      
 
       <!-- Daily Time Record table -->
       <table class="w-100 text-center dtr-table" :style="{opacity: filter.processing ? 0.2 : 1}">
@@ -59,11 +55,12 @@
         </tbody>
       </table>
     </div>
-  </ProfileLayout>
+  </AuthenticatedLayout>
 </template>
 
 <script setup>
 import ProfileLayout from '@/Pages/Profile/Layout/ProfileLayout.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { useForm } from '@inertiajs/vue3'
 import { debounce } from 'lodash'
 import moment from 'moment'

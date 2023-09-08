@@ -1,79 +1,77 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-light shadow-sm navbar-light">
+  <nav class="navbar bg-light shadow-sm fixed-top" style="z-index: 1;">
     <div class="container-fluid">
-      <Link class="navbar-brand" :href="route('dashboard')">HRIS</Link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon" />
-      </button>
-      <div id="collapsibleNavbar" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-          <!-- <li class="nav-item">
-                        <Link class="nav-link" :class="{ active: route().current('dashboard') }" :href="route('dashboard')">
-                        Dashboard</Link>
-                    </li> -->
-          <li class="nav-item">
-            <Link
-              class="nav-link" :class="{
-                active: route().current(
-                  'recruitment.job_posting.*'
-                )
-              }" :href="route('recruitment.job_posting.index')"
-            >
-              Job Vacancies
-            </Link>
+      <div class="d-flex gap-3 align-items-center ">
+        <div data-bs-toggle="offcanvas" data-bs-target="#sideNav" class="side-nav-toggler px-1">
+          <span class="navbar-toggler-icon" />
+        </div>
+        <Link class="navbar-brand" :href="route('dashboard')">
+          NRO2 HRIS
+        </Link>
+      </div>
+      <div v-if="user" class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
+          $page.props.auth.user?.name }}</a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <Link class="dropdown-item" :href="route('profile.index')">Profile</Link>
           </li>
-          <li v-if="user" class="nav-item">
-            <Link
-              class="nav-link" :class="{
-                active: route().current(
-                  'daily_time_record.*'
-                )
-              }" :href="route('daily_time_record.index')"
-            >
-              Daily Time Record
-            </Link>
+          <li v-if="admin">
+            <Link class="dropdown-item" :href="route('admin.dashboard')">Admin</Link>
           </li>
-          <!-- <div class="nav-item dropdown">
-                        <Link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            :class="{ active: route().current('recruitment.*') }">Job Vacancies
-                        </Link>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <Link class="dropdown-item" :href="route('recruitment.job_posting.index')">Job Vacancies
-                                </Link>
-                            </li>
-                        </ul>
-                    </div> -->
+          <li>
+            <Link class="dropdown-item" :href="route('logout')" method="post" as="button">Logout</Link>
+          </li>
         </ul>
+      </div>
 
-        <div v-if="user" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
-            $page.props.auth.user?.name }}</a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <Link class="dropdown-item" :href="route('profile.index')">Profile</Link>
-            </li>
-            <li v-if="admin">
-              <Link class="dropdown-item" :href="route('admin.dashboard')">Admin</Link>
-            </li>
-            <li>
-              <Link class="dropdown-item" :href="route('logout')" method="post" as="button">Logout</Link>
-            </li>
-          </ul>
-        </div>
-
-        <div v-else class="nav-item d-flex gap-2">
-          <Link :href="route('login')" class="btn btn-dark">Sign-In</Link>
-          <Link :href="route('register')" class="btn btn-secondary">Register</Link>
-        </div>
+      <div v-else class="d-flex gap-2">
+        <Link :href="route('login')" class="btn btn-dark">Sign-In</Link>
+        <Link :href="route('register')" class="btn btn-secondary">Register</Link>
       </div>
     </div>
   </nav>
+
+
+  <div id="sideNav" class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" tabindex="-1" aria-labelledby="Enable both scrolling & backdrop">
+    <div class="offcanvas-header text-light">
+      <div class="offcanvas-title "><h3>Menu</h3></div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+    </div>
+    <ul class="nav text-light flex-column gap-2 p-4 bg-primary side-nav" style="z-index: 1;">
+      <li class="nav-item  d-flex align-center gap-2">
+        <img :src="nedalogo" alt="" class="img-fluid side-nav-logo" />
+        <b>NRO2 Human Resource Information System</b>
+      </li>
+      <li class="nav-item mt-4">
+        <Link
+          class="nav-link text-info" :class="{
+            active: route().current(
+              'recruitment.job_posting.*'
+            )
+          }" :href="route('recruitment.job_posting.index')"
+        >
+          Job Vacancies
+        </Link>
+      </li>
+      <li v-if="user" class="nav-item">
+        <Link
+          class="nav-link text-info" :class="{
+            active: route().current(
+              'daily_time_record.*'
+            )
+          }" :href="route('daily_time_record.index')"
+        >
+          My Daily Time Record
+        </Link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3'
-
+import nedalogo from '@/Assets/neda-logo.png'
 import { computed } from 'vue'
 
 const user = computed(() => usePage().props.auth.user)

@@ -1,9 +1,5 @@
 <template>
   <ProfileLayout>
-    <template #header>
-      <h3>Personal Data Sheet</h3>
-    </template>
-  
     <PDSLayout :is-form-dirty="form.isDirty">
       <form @submit.prevent="save">
         <!-- Some borders are removed -->

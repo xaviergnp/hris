@@ -1,19 +1,20 @@
 <template>
   <div>
-    <div class="container-fluid">
-      <MainNavbar />
-      <!-- Page Heading -->
-      <header v-if="$slots.header" class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" />
-      </header>
-
-      <!-- Page Content -->
-      <main>
-        <div class="container mt-3">
+    <MainNavbar />
+    <!-- Page Content -->
+    <div class="row">
+      <div class="col-2 side-nav-col">
+        <SideNav />
+      </div>
+      <div class="col">
+        <div class="container" style="position:relative;">
+          <br />
+          <br />
+          <br />
           <Notifications :flash="$page.props.ziggy.flash" />
           <slot />
         </div>
-      </main>
+      </div>
     </div>
   </div>
 </template>
@@ -21,5 +22,6 @@
 <script setup>
 import MainNavbar from '@/Components/MainNavbar.vue'
 import Notifications from '@/Components/Notifications.vue'
+import SideNav from '@/Components/SideNav.vue'
 
 </script>
