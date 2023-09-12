@@ -258,7 +258,6 @@ class DailyTimeRecord extends Model
             // $hours_to_render = (5 - ($date->dayOfWeek - 1)) * 8;
             $days_before_count = $date->dayOfWeek;
             // 1; 1 < 1; 0+1
-            echo '<br /> <br/> <br/>';
 
             for($i = 0; $i < $days_before_count; $i ++){
 
