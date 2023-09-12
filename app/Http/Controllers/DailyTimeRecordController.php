@@ -15,10 +15,11 @@ class DailyTimeRecordController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['month']);
-            
+        $dtr = DailyTimeRecord::getRecordByMonth($request->user()->dtr_user_id, $filters);
         return inertia('Profile/DailyTimeRecord/Index', [
             'filters' => $filters,
-            'record_sample' => DailyTimeRecord::getRecordByMonth($request->user()->dtr_user_id, $filters)
+            'records' => $dtr['dtr'],
+            'suggestions' => DailyTimeRecord::getInfo($request->user()->dtr_user_id),
         ]);
     }
 

@@ -9,7 +9,7 @@
           <h3>{{ props.job_posting.position }}</h3>
           <div class="d-flex gap-2">
             <Link
-              v-if="permissions.includes('Apply Job')"
+              v-if="permissions && permissions.includes('Apply Job')"
               :href="
                 route('recruitment.job_posting.apply', {
                   job_posting: props.job_posting.id

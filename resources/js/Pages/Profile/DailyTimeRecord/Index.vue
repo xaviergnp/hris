@@ -1,10 +1,15 @@
 <template>
+  <Head title="DTR" />  
   <AuthenticatedLayout>
     <h3>Daily Time Record</h3>
     <div class="mb-3">
       <input id="" v-model="filter.month" type="month" name="" class="form-control" @change="onChangeMonth" />
     </div>
     <div class="table-responsive container" :style="{position: 'relative'}">
+      <div v-if="props.suggestions" class="mb-3">
+        <b>Today, you are expected to have rendered at least	<span class="text-danger">{{ props.suggestions.hours_to_render }} hours</span>. </b>
+        <b>The suggested time to logout is <span class="text-danger">{{ props.suggestions.timeout }}</span></b>
+      </div>
       <div v-if="filter.processing" class="center-element">
         <div
           class="spinner-border text-primary spinner-border-lg"
@@ -33,7 +38,7 @@
         </thead>
         <tbody>
           <!-- Loop through days in the selected month -->
-          <tr v-for="(record) in record_sample" :key="record.date">
+          <tr v-for="(record) in records" :key="record.date">
             <td>{{ record.date }}</td>
             <td>{{ record.day }}</td>
             <td>
@@ -59,7 +64,7 @@
 </template>
 
 <script setup>
-import ProfileLayout from '@/Pages/Profile/Layout/ProfileLayout.vue'
+import {Head} from '@inertiajs/vue3'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { useForm } from '@inertiajs/vue3'
 import { debounce } from 'lodash'
@@ -68,8 +73,8 @@ import moment from 'moment'
 
 const props = defineProps({
   records: Array,
-  record_sample: Array,
   filters: Object,
+  suggestions: Object,
 })
 
 const filter = useForm({
