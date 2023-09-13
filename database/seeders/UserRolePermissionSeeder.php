@@ -9,14 +9,16 @@ use Illuminate\Auth\Events\Registered;
 
 
         $permissions = [
+            'Apply Job',
             'Access Admin', 
             'Manage Roles and Permissions', 
             'Manage Job Vacancies', 
             'Access Job Vacancies', 
             'Access DTR',
             'Manage Employees',
-            'Apply Job'
+            'Manage DTR',
         ];
+        
         $roles = ['superadmin', 'admin', 'hr', 'user', 'employee'];
 
         foreach($roles as $role){

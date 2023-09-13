@@ -288,7 +288,7 @@ class DailyTimeRecord extends Model
                 }
             }
         }
-        if($dtr_now['inAM']){
+        if($dtr_now['inAM'] && $dtr_now['outPM'] == null){
             $dtr_now_am = $dtr_now['inAM'];
             $inAM = Carbon::parse($dtr_now_am->format('H:i:s'));
     
@@ -307,9 +307,10 @@ class DailyTimeRecord extends Model
             }else{
                 $hours_to_render_today = $hours_to_render - $rendered + 3600;
             }
+
     
             return([
-                'hours_to_render' => gmdate('H', $hours_to_render),
+                'hours_to_render' => ($hours_to_render / 60) / 60,
                 'render' => gmdate('H:i:s', $hours_to_render - $rendered),
                 'rendered' => gmdate('H:i:s', $rendered),
                 'timeout' => $inAM->addSeconds($hours_to_render_today)->format('h:i A'),
