@@ -23,13 +23,14 @@
       <table class="w-100 text-center dtr-table" :style="{opacity: filter.processing ? 0.2 : 1}">
         <thead>
           <tr>
-            <td rowspan="2">#</td>
-            <td rowspan="2">Day</td>
+            <td rowspan="2" class="wd-10">#</td>
+            <td rowspan="2" class="wd-10">Day</td>
             <td colspan="2">Morning</td>
             <td colspan="2">Afternoon</td>
-            <td rowspan="2">Total Hours</td>
+            <td rowspan="2" class="wd-15">Total Hours</td>
+            <td rowspan="2">Remarks</td>
           </tr>
-          <tr>
+          <tr class="in-out">
             <td>In</td>
             <td>Out</td>
             <td>In</td>
@@ -55,6 +56,9 @@
             </td>
             <td>
               <b>{{ record.totalHours }}</b>
+            <td>
+              <b>{{ record.remarks }}</b>
+            </td>
             </td>
           </tr>
         </tbody>
