@@ -1,5 +1,18 @@
 @charset "UTF-8";
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* ---------------- DTR start ---------------- */
+.wd-10 {
+  width: 10%;
+}
+.wd-15 {
+  width: 15%;
+}
+.in-out > td {
+  width: 10%;
+}
+
+/* ---------------- DTR end ---------------- */
 .center-element {
   position: absolute;
   top: 50%;
