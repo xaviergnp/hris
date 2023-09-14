@@ -4,6 +4,7 @@
  // Admin Page Routes
 
 use App\Http\Controllers\Admin\AdminDailyTimeRecordController;
+use App\Http\Controllers\Admin\AdminJobApplicationController;
 use App\Http\Controllers\Admin\AdminJobPostingController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\AdminController;
@@ -38,8 +39,11 @@ use App\Http\Controllers\AdminController;
      ->name('recruitment.')
      ->group(function () {
          Route::resource('job_posting', AdminJobPostingController::class);
-     });
 
+         Route::get('job_posting/{job_posting}/job_application', [AdminJobApplicationController::class, 'index'])->name('job_application.index');
+         Route::get('job_posting/job_application/{job_application}', [AdminJobApplicationController::class, 'show'])->name('job_application.show');
+     });
+    
     Route::get('daily_time_record', [AdminDailyTimeRecordController::class, 'index'])->name('daily_time_record.index');
  });
 

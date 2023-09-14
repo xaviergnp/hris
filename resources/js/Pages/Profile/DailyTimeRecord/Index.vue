@@ -8,6 +8,7 @@
     <div class="table-responsive container" :style="{position: 'relative'}">
       <div v-if="props.suggestions" class="mb-3">
         <b>Today, you are expected to have rendered at least	<span class="text-danger">{{ props.suggestions.hours_to_render }} hours</span>. </b>
+        <br />
         <b>The suggested time to logout is <span class="text-danger">{{ props.suggestions.timeout }}</span></b>
       </div>
       <div v-if="filter.processing" class="center-element">

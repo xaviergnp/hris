@@ -5,6 +5,8 @@ import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
+import BreadCrumbs from '@/Components/BreadCrumbs.vue'
+import { computed } from 'vue'
 
 const form = useForm({
   name: '',
@@ -22,14 +24,29 @@ const submit = () => {
     },
   })
 }
+
+const crumbs = computed(() => [
+  {
+    label: 'Admin Dashboard',
+    link: route('admin.dashboard'),
+  },
+  {
+    label: 'Employees',
+    link: route('admin.employees.index'),
+  },
+  {
+    label: 'Create Account',
+  },
+])
+    
 </script>
 
 <template>
   <AdminLayout>
     <Head title="Register" />
-
+    <BreadCrumbs :crumbs="crumbs" />
     <div class="container">
-      <div class="card shadow center-element">
+      <div class="card shadow">
         <div class="card-body">
           <form @submit.prevent="submit">
             <div>

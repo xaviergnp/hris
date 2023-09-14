@@ -25,7 +25,7 @@ class AdminJobPostingController extends Controller
         // dd($filters);
 
         return inertia('Admin/Recruitment/JobPosting/Index', [
-            'job_vacancies' => JobPosting::filter($filters)->paginate(15)->withQueryString(),
+            'job_vacancies' => JobPosting::withCount(['job_application'])->filter($filters)->paginate(15)->withQueryString(),
             'filters' => $filters
         ]);
     }

@@ -10,6 +10,16 @@
           <div class="d-flex gap-2">
             <Link
               :href="
+                route('admin.recruitment.job_application.index', {
+                  job_posting: props.job_posting.id
+                })
+              "
+              class="btn btn-success"
+            >
+              View Applications
+            </Link>
+            <Link
+              :href="
                 route('admin.recruitment.job_posting.edit', {
                   job_posting: props.job_posting.id
                 })
@@ -97,7 +107,7 @@ const crumbs = computed(() => [
     link: route('admin.recruitment.job_posting.index'),
   },
   {
-    label: props.job_posting.plantilla_item_no,
+    label: props.job_posting.position,
   },
 ])
 </script>
