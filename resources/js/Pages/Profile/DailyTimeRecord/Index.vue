@@ -56,9 +56,9 @@
             </td>
             <td>
               <b>{{ record.totalHours }}</b>
+            </td>
             <td>
               <b>{{ record.remarks }}</b>
-            </td>
             </td>
           </tr>
         </tbody>
