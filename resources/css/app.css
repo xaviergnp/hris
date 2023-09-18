@@ -12,7 +12,19 @@
   width: 10%;
 }
 
+/* ---- Work From Home start ---- */
+/* .ul-none{
+  list-style-type: none;
+}
+.ul-row{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+} */
+/* ---- Work From Home start ---- */
+
 /* ---------------- DTR end ---------------- */
+
 .center-element {
   position: absolute;
   top: 50%;

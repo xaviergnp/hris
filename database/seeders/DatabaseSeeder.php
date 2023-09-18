@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         require __DIR__ . '/UserRolePermissionSeeder.php';
         require __DIR__ . '/JobPostingSeeder.php';
+        // require __DIR__ . '/WorkFromHomeSeeder.php';
         
     }
 }
