@@ -4,7 +4,7 @@
   <AdminLayout>
     <BreadCrumbs :crumbs="crumbs" />
     <h3>Employees</h3>
-    <Link :href="route('admin.employees.create')">Create Account</Link>
+    <Link :href="route('admin.employees.create')" class="btn btn-primary">Create Account</Link>
 
     <div class="table-responsive">
       <table class="table table-compact">
@@ -13,6 +13,7 @@
             <th scope="col">Username</th>
             <th scope="col">Name</th>
             <th scope="col">DTR ID</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -20,10 +21,14 @@
             <td scope="row">{{ employee.username }}</td>
             <td>{{ employee.name }}</td>
             <td>{{ employee.dtr_user_id }}</td>
+            <td class="d-flex gap-2">
+              <Link :href="route('admin.employees.edit', {employee: employee.id})" class="btn btn-success btn-sm"><i class="bi-pencil-fill" /></Link>
+              <Link class="btn btn-danger btn-sm"><i class="bi-trash-fill" /></Link>
+            </td>
           </tr>
         </tbody>
       </table>
-      <Pagination :links="props.employees.links" />
+      <Pagination v-if="props.employees.length > 15" :links="props.employees.links" />
     </div>
   </AdminLayout>
 </template>

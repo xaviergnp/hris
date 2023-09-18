@@ -1,5 +1,5 @@
 <script setup>
-import AdminLayout from '@/Pages/Admin/Layout/AdminLayout.vue'
+import Layout from './Layout.vue'
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
@@ -9,16 +9,17 @@ import BreadCrumbs from '@/Components/BreadCrumbs.vue'
 import { computed } from 'vue'
 
 const form = useForm({
-  name: '',
-  username: '',
+  name: props.employee.name,
+  username: props.employee.username,
   password: '',
-  dtr_user_id: '',
+  dtr_user_id: props.employee.dtr_user_id,
   password_confirmation: '',
-  role: 'employee',
+  role: props.employee.role,
 })
 
 const props = defineProps({
   roles: Array,
+  employee: Object,
 })
 
 const submit = () => {
@@ -30,26 +31,13 @@ const submit = () => {
   })
 }
 
-const crumbs = computed(() => [
-  {
-    label: 'Admin Dashboard',
-    link: route('admin.dashboard'),
-  },
-  {
-    label: 'Employees',
-    link: route('admin.employees.index'),
-  },
-  {
-    label: 'Create Account',
-  },
-])
+
     
 </script>
 
 <template>
-  <AdminLayout>
+  <Layout :employee="props.employee.id">
     <Head title="Register" />
-    <BreadCrumbs :crumbs="crumbs" />
     <div class="container">
       <div class="card shadow">
         <div class="card-body">
@@ -62,7 +50,6 @@ const crumbs = computed(() => [
                 v-model="form.name"
                 type="text"
                 class="mt-1 block w-full"
-                
                 autofocus
                 autocomplete="name"
               />
@@ -175,5 +162,5 @@ const crumbs = computed(() => [
         </div>
       </div>
     </div>
-  </AdminLayout>
+  </Layout>
 </template>

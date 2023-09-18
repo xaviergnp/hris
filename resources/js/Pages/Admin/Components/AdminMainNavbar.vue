@@ -7,7 +7,18 @@
       </button>
       <div id="collapsibleNavbar" class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto">
-          <div class="nav-item">
+          <li v-if="permissions.includes('Manage Rewards and Recognition')" class="nav-item">
+            <Link
+              class="nav-link" :href="route('admin.rewards.index')" :class="{
+                active: route().current(
+                  'admin.rewards.*'
+                )
+              }"
+            >
+              Rewards and Recognition
+            </Link>
+          </li>
+          <li class="nav-item">
             <Link
               class="nav-link" :href="route('admin.employees.index')" :class="{
                 active: route().current(
@@ -17,8 +28,8 @@
             >
               Employees
             </Link>
-          </div>
-          <div class="nav-item">
+          </li>
+          <li class="nav-item">
             <Link
               class="nav-link" :href="route('admin.recruitment.job_posting.index')" :class="{
                 active: route().current(
@@ -28,8 +39,8 @@
             >
               Recruitment, Selection and Placement
             </Link>
-          </div>
-          <div class="nav-item dropdown">
+          </li>
+          <li class="nav-item dropdown">
             <Link
               class="nav-link" :href="route('admin.role_permission.role.index')" :class="{
                 active: route().current(
@@ -39,8 +50,8 @@
             >
               Roles and Permissions
             </Link>
-          </div>
-          <div class="nav-item dropdown">
+          </li>
+          <li class="nav-item dropdown">
             <Link
               class="nav-link" :href="route('admin.daily_time_record.index')" :class="{
                 active: route().current(
@@ -50,7 +61,7 @@
             >
               Daily Time Record
             </Link>
-          </div>
+          </li>
         </ul>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
@@ -73,5 +84,7 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
+
+const permissions = usePage().props.auth.permissions.map(p => p.name)
 </script>

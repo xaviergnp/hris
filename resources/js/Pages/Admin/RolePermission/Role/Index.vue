@@ -30,7 +30,7 @@
                 })
               "
             >
-              Edit
+              <i class="bi-pencil-fill" />
             </Link>
             <Link
               class="btn btn-danger"
@@ -42,7 +42,7 @@
               "
               as="button"
             >
-              Delete
+              <i class="bi-trash-fill" />
             </Link>
           </td>
         </tr>
