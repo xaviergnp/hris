@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="permission in props.permissions.data">
+        <tr v-for="permission in props.permissions.data" :key="permission.id">
           <td>{{ permission.name }}</td>
           <td class="d-flex gap-2">
             <Link
@@ -29,7 +29,7 @@
               "
               class="btn btn-success"
             >
-              Edit
+              <i class="bi-pencil-fill" />
             </Link>
             <Link
               class="btn btn-danger"
@@ -42,7 +42,7 @@
               "
               as="button"
             >
-              Delete
+              <i class="bi-trash-fill" />
             </Link>
           </td>
         </tr>

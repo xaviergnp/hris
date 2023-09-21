@@ -24,6 +24,7 @@
             <th>Plantilla Item No.</th>
             <th>Posting Date</th>
             <th>Closing Date</th>
+            <th>Applicants</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -34,6 +35,7 @@
             <td>{{ item.plantilla_item_no }}</td>
             <td>{{ moment(item.posting_date).format('LL') }}</td>
             <td>{{ moment(item.closing_date).format('LL') }}</td>
+            <td><Link :href="route('admin.recruitment.job_application.index', {job_posting: item.id})">{{ item.job_application_count }}</Link></td>
             <td>
               <Link
                 :href="

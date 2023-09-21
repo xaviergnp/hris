@@ -249,6 +249,7 @@ class DailyTimeRecord extends Model
         
         $hours_to_render = ($date->dayOfWeek * 8) * 60 * 60;
         $rendered = 0;
+        $timeout = null;
 
         $dtr_now = null;
         
@@ -308,12 +309,20 @@ class DailyTimeRecord extends Model
                 $hours_to_render_today = $hours_to_render - $rendered + 3600;
             }
 
+            $timeout = $inAM->addSeconds($hours_to_render_today);
+
+            if($timeout->lessThan(Carbon::parse('16:00'))){
+                $timeout = Carbon::parse('4:00 PM');
+            }else if($timeout->greaterThan(Carbon::parse('19:00'))){
+                $timeout = Carbon::parse('7:00 PM');
+            }
+
     
             return([
                 'hours_to_render' => ($hours_to_render / 60) / 60,
-                'render' => gmdate('H:i:s', $hours_to_render - $rendered),
-                'rendered' => gmdate('H:i:s', $rendered),
-                'timeout' => $inAM->addSeconds($hours_to_render_today)->format('h:i A'),
+                'render' => round(($hours_to_render - $rendered) / 60 / 60),
+                'rendered' => round($rendered / 60 / 60),
+                'timeout' => $timeout->format('h:i A'),
             ]);
         }
 
