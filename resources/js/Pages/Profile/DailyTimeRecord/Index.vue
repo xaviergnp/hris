@@ -1,23 +1,96 @@
 <template>
-  <Head title="DTR" />  
-  <AuthenticatedLayout>
-    <h3>Daily Time Record</h3>
-    <div class="mb-3">
-      <input id="" v-model="filter.month" type="month" name="" class="form-control" @change="onChangeMonth" />
-    </div>
-    <div class="table-responsive container" :style="{position: 'relative'}">
-      <div v-if="props.suggestions" class="mb-3">
-        <b>Today, you are expected to have rendered at least	<span class="text-danger">{{ props.suggestions.hours_to_render }} hours</span>. </b>
-        <b>The suggested time to logout is <span class="text-danger">{{ props.suggestions.timeout }}</span></b>
-      </div>
-      <div v-if="filter.processing" class="center-element">
-        <div
-          class="spinner-border text-primary spinner-border-lg"
-          role="status"
-        >
-          <span class="visually-hidden">Loading...</span>
+    <Head title="DTR" />
+    <AuthenticatedLayout>
+        <h3>Daily Time Record</h3>
+        <div class="mb-3">
+            <input
+                id=""
+                v-model="filter.month"
+                type="month"
+                name=""
+                class="form-control"
+                @change="onChangeMonth"
+            />
         </div>
-      </div>
+        <div
+            class="table-responsive container"
+            :style="{ position: 'relative' }"
+        >
+            <div v-if="props.suggestions" class="mb-3">
+                <b
+                    >Today, you are expected to have rendered at least
+                    <span class="text-danger"
+                        >{{ props.suggestions.hours_to_render }} hours</span
+                    >.
+                </b>
+                <b
+                    >The suggested time to logout is
+                    <span class="text-danger">{{
+                        props.suggestions.timeout
+                    }}</span></b
+                >
+            </div>
+            <div v-if="filter.processing" class="center-element">
+                <div
+                    class="spinner-border text-primary spinner-border-lg"
+                    role="status"
+                >
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Work From Home attendance -->
+            <hr />
+            <div v-if="isFriday">
+                <h5>Work From Home - Friday ONLY!</h5>
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Time In</th>
+                            <th>Break Out</th>
+                            <th>Break In</th>
+                            <th>Time Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button
+                                    type="button"
+                                    class="btn btn-success"
+                                    disabled
+                                >
+                                    Done
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">
+                                    Current
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    disabled
+                                >
+                                    Pending
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    disabled
+                                >
+                                    Pending
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr />
 
             <!-- Daily Time Record table -->
             <table
@@ -77,9 +150,7 @@ import { useForm } from "@inertiajs/vue3";
 import { debounce } from "lodash";
 import moment from "moment";
 
-// const incrementAttendance({
-
-// });
+const isFriday = new Date().getDay() === 4; //0-Sunday, 1-Mon, 5-Fri
 
 const props = defineProps({
     records: Array,
